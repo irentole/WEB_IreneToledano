@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mundo fluctuante — proyecto de Irene Toledano.">
+  <title>Mundo fluctuante — Irene Toledano</title>
+  <link rel="stylesheet" href="project.css">
+</head>
+<body class="project-page project-page--fluctuating">
+  <a class="project-back" href="index.html" aria-label="Volver a la página principal">←</a>
+
+  <main class="project-main">
+    <section class="project-overview" aria-labelledby="project-title">
+      <div class="project-overview__info">
+        <h1 id="project-title">Mundo fluctuante</h1>
+        <p class="project-overview__category">concept design + graphic design · object design</p>
+        <p class="project-overview__year">2024</p>
+        <p class="project-overview__description"><strong>Fluctuating World</strong> is a <strong>speculative design</strong> project that explores the challenges of a fictional world in which the <strong>ground is unstable and constantly moving</strong>. Within this imagined reality, the project focuses on a specific issue affecting everyday life: strawberry harvesting in the southern Spanish province of Almería, where this agricultural sector plays a significant role in both the regional and national economy. The project follows a design methodology, the <strong>Double Diamond</strong>, that uses the design process itself as a tool for investigation. By understanding the root of the problem within this speculative context, the aim is to develop a solution that is both functional and well adapted to the unique conditions of this fluctuating environment.</p>
+      </div>
+    </section>
+
+    <section class="project-gallery project-gallery--opening" aria-labelledby="opening-label">
+      <h2 class="project-gallery__label" id="opening-label">poster + front cover</h2>
+      <img class="project-gallery__poster" src="Content/MUNDO FLUCTUANTE/POSTER FLUCTUATING.png" alt="Fluctuating World poster">
+    </section>
+
+    <section class="project-gallery project-gallery--investigation" aria-labelledby="investigation-label">
+      <h2 class="project-gallery__label" id="investigation-label">investigation</h2>
+      <img src="Content/MUNDO FLUCTUANTE/01 M-FW.png" alt="Fluctuating World investigation 01" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/02 M-FW.png" alt="Fluctuating World investigation 02" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/03 M-FW.png" alt="Fluctuating World investigation 03" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/04 M-FW.png" alt="Fluctuating World investigation 04" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/05 M-FW.png" alt="Fluctuating World investigation 05" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/06 M-FW.png" alt="Fluctuating World investigation 06" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/07 M-FW.png" alt="Fluctuating World investigation 07" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/08 M-FW.png" alt="Fluctuating World investigation 08" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/09 M-FW.png" alt="Fluctuating World investigation 09" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/10 M-FW.png" alt="Fluctuating World investigation 10" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/11 M-FW.png" alt="Fluctuating World investigation 11" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/12 M-FW.png" alt="Fluctuating World investigation 12" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/13 M-FW.png" alt="Fluctuating World investigation 13" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/14 M-FW.png" alt="Fluctuating World investigation 14" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/15 M-FW.png" alt="Fluctuating World investigation 15" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/16 M-FW.png" alt="Fluctuating World investigation 16" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/17 M-FW.png" alt="Fluctuating World investigation 17" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/18 M-FW.png" alt="Fluctuating World investigation 18" loading="lazy">
+      <figure class="project-feature">
+        <button class="project-feature__button" type="button" aria-label="Ampliar imagen 19" aria-expanded="false">
+          <img src="Content/MUNDO FLUCTUANTE/19 M-FW.png" alt="Fluctuating World investigation 19" loading="lazy">
+        </button>
+        <figcaption>19 — featured investigation</figcaption>
+      </figure>
+      <img src="Content/MUNDO FLUCTUANTE/20 M-FW.png" alt="Fluctuating World investigation 20" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/21 M-FW.png" alt="Fluctuating World investigation 21" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/22 M-FW .png" alt="Fluctuating World investigation 22" loading="lazy">
+      <img src="Content/MUNDO FLUCTUANTE/BACK COVER FW 2.png" alt="Fluctuating World back cover" loading="lazy">
+    </section>
+  </main>
+
+  <script>
+    const feature = document.querySelector('.project-feature');
+    const featureButton = feature.querySelector('.project-feature__button');
+
+    function setFeatureExpanded(expanded) {
+      feature.classList.toggle('is-expanded', expanded);
+      featureButton.setAttribute('aria-expanded', String(expanded));
+      featureButton.setAttribute('aria-label', expanded ? 'Cerrar imagen 19' : 'Ampliar imagen 19');
+      document.body.classList.toggle('has-expanded-feature', expanded);
+    }
+
+    featureButton.addEventListener('click', () => {
+      setFeatureExpanded(!feature.classList.contains('is-expanded'));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') setFeatureExpanded(false);
+    });
+  </script>
+
+</body>
+</html>

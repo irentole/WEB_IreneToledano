@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Design portfolio of Irene Toledano.">
+  <title>Irene Toledano — Design Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body class="portfolio-home">
+  <header class="home-header">
+    <a href="index.html">Irene Toledano</a>
+    <p>Design Portfolio</p>
+  </header>
+
+  <main class="portfolio-composition">
+    <figure class="project-preview project-preview--top" aria-label="Selected project preview">
+      <div class="project-preview__surface"></div>
+      <figcaption>Project preview</figcaption>
+    </figure>
+
+    <span class="composition-mark composition-mark--top" aria-hidden="true">+</span>
+
+    <nav class="project-menu" aria-label="Projects">
+      <ul>
+        <li><button data-project="SubTexture" data-href="subtexture.html"><strong>SubTexture</strong> — editorial design</button></li>
+        <li><button data-project="¡Vámonos de compras!" data-href="vamonos-de-compras.html"><strong>¡Vámonos de compras!</strong> — graphic design</button></li>
+        <li><button data-project="Synchro WA"><strong>Synchro WA</strong> — visual identity</button></li>
+        <li><button data-project="Australian Artistic Swimming Championship 2023"><strong>Australian Artistic Swimming Championship 2023</strong> — poster</button></li>
+        <li><button data-project="Artistic Swimming WA" data-href="index_DG.html"><strong>Artistic Swimming WA</strong> — logo design</button></li>
+        <li><button data-project="Basel Aquatics" data-href="basel-aquatics.html"><strong>Basel Aquatics</strong> — logo design</button></li>
+        <li><button data-project="Así se as"><strong>así se as</strong> — logo design</button></li>
+        <li><button data-project="Chipén" data-href="imágenes_DG/PDF_GRÁFICO.pdf"><strong>Chipén</strong> — packaging + illustration</button></li>
+        <li><button data-project="Lady Choll"><strong>Lady Chollo</strong> — illustration</button></li>
+        <li><button data-project="El cocodrilo"><strong>El cocodrilo</strong> — editorial design + graphic design</button></li>
+        <li class="project-menu__indent"><button data-project="MHT chairs" data-href="Sillas.html"><strong>MHT chairs</strong> — object design + photography + graphic design</button></li>
+        <li class="project-menu__indent"><button data-project="D PATA NEGRA" data-href="d-pata-negra.html"><strong>D PATA NEGRA</strong> — photography + art</button></li>
+        <li class="project-menu__indent"><button data-project="Mundo fluctuante" data-href="fluctuating.html"><strong>Mundo fluctuante</strong> — concept design + graphic design</button></li>
+        <li class="project-menu__indent"><button data-project="FOOD JEWELS" data-href="PDF_DO/FOODJEWELS.pdf"><strong>FOOD JEWELS</strong> — object design + art direction + photography</button></li>
+        <li class="project-menu__indent"><button data-project="linked"><strong>linked</strong> — photography</button></li>
+        <li class="project-menu__indent"><button data-project="Cuando el Sol perdió a la Luna"><strong>Cuando el Sol perdió a la Luna</strong> — art + photography</button></li>
+        <li class="project-menu__indent"><button data-project="McRib" data-href="mcrib.html"><strong>McRib</strong> — art</button></li>
+        <li class="project-menu__indent"><button data-project="Ortiz" data-href="ortiz.html"><strong>Ortiz</strong> — art</button></li>
+        <li class="project-menu__indent"><button data-project="BioPark"><strong>BioPark</strong> — storyboard</button></li>
+        <li class="project-menu__indent"><button data-project="lunnetes"><strong>lunnetes</strong> — storyboard + ideation + direction</button></li>
+        <li class="project-menu__indent"><button data-project="CEVISAMA"><strong>CEVISAMA</strong> — photography</button></li>
+        <li><button data-project="girls talk" data-href="girls-talk.html"><strong>girls talk</strong> — painting, acrylic on canvas</button></li>
+        <li><button data-project="after party"><strong>after party</strong> — painting, acrylic on canvas</button></li>
+        <li><button data-project="Thoughts and Emotions" data-href="thoughts-and-emotions.html"><strong>Thoughts and Emotions</strong> — print, acrylic on cardboard</button></li>
+        <li><button data-project="The fear of dreaming"><strong>The fear of dreaming</strong> — painting, acrylic on canvas</button></li>
+        <li><button data-project="DRAGONS"><strong>DRAGONS</strong> — painting, mixed techniques</button></li>
+      </ul>
+    </nav>
+
+  </main>
+
+  <address class="home-contact">
+    <a href="mailto:irene.toledanocarmelo@gmail.com">irene.toledanocarmelo@gmail.com</a>
+    <a href="tel:+34680698921">+34 680698921</a>
+    <a href="tel:+41782242249">+41 78 224 2249</a>
+  </address>
+
+  <script>
+    const projectButtons = [...document.querySelectorAll('.project-menu button')];
+    const previews = [...document.querySelectorAll('.project-preview')];
+    const primaryPreview = document.querySelector('.project-preview--top');
+    const primaryPreviewSurface = primaryPreview.querySelector('.project-preview__surface');
+    const projectPreviewImages = {
+      'SubTexture': 'Content/SubTexture/POSTER.jpg',
+      '¡Vámonos de compras!': 'Content/¡Vámonos de compras!/POSTER.png',
+      'Basel Aquatics': 'Content/Basel Aquatics/LOGO 1.png',
+      'D PATA NEGRA': 'Content/D Pata Negra/POSTER D Pata.png',
+      'MHT chairs': 'Content/MHT chairs/POSTER MHT.png',
+      'Mundo fluctuante': 'Content/MUNDO FLUCTUANTE/POSTER FLUCTUATING.png',
+      'Ortiz': 'Content/Ortiz/POSTER ORTIZ.jpg',
+      'McRib': 'Content/McRib/poster McRib.jpg',
+      'girls talk': 'Content/girls talk/POSTER.png',
+      'Thoughts and Emotions': 'Content/toughts and emotions/POSTER.png'
+    };
+
+    function showProjectPreview(button) {
+      const image = projectPreviewImages[button.dataset.project];
+      primaryPreview.classList.toggle('has-project-image', Boolean(image));
+      primaryPreviewSurface.style.backgroundImage = image ? `url("${image}")` : '';
+    }
+
+    function clearProjectPreview() {
+      primaryPreview.classList.remove('has-project-image');
+      primaryPreviewSurface.style.backgroundImage = '';
+    }
+
+    const rotatingProjects = projectButtons.filter(button => projectPreviewImages[button.dataset.project]);
+    let rotatingProjectIndex = 0;
+    let hoveredProject = null;
+    let focusedProject = null;
+    let previewRotationTimer;
+
+    function showNextProjectPreview() {
+      if (!rotatingProjects.length || hoveredProject || focusedProject) return;
+      showProjectPreview(rotatingProjects[rotatingProjectIndex]);
+      rotatingProjectIndex = (rotatingProjectIndex + 1) % rotatingProjects.length;
+    }
+
+    function startPreviewRotation() {
+      clearInterval(previewRotationTimer);
+      if (hoveredProject || focusedProject) return;
+      primaryPreview.classList.remove('is-interactive');
+      showNextProjectPreview();
+      previewRotationTimer = setInterval(showNextProjectPreview, 800);
+    }
+
+    function showInteractivePreview() {
+      clearInterval(previewRotationTimer);
+      const activeProject = hoveredProject || focusedProject;
+      primaryPreview.classList.toggle('is-interactive', Boolean(activeProject));
+      if (activeProject) {
+        showProjectPreview(activeProject);
+      } else {
+        startPreviewRotation();
+      }
+    }
+
+    function selectProject(button) {
+      projectButtons.forEach(item => {
+        item.classList.toggle('is-selected', item === button);
+        item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
+      });
+      previews.forEach(preview => preview.dataset.project = button.dataset.project);
+      if (button.dataset.href) {
+        if (usesPointer || reduceMotion) {
+          window.location.href = button.dataset.href;
+        } else {
+          setTimeout(() => {
+            window.location.href = button.dataset.href;
+          }, 260);
+        }
+      }
+    }
+
+    projectButtons.forEach(button => {
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', () => selectProject(button));
+      button.addEventListener('pointerenter', () => {
+        hoveredProject = button;
+        showInteractivePreview();
+      });
+      button.addEventListener('focus', () => {
+        focusedProject = button;
+        showInteractivePreview();
+      });
+      button.addEventListener('pointerleave', () => {
+        if (hoveredProject === button) hoveredProject = null;
+        showInteractivePreview();
+      });
+      button.addEventListener('blur', () => {
+        if (focusedProject === button) focusedProject = null;
+        showInteractivePreview();
+      });
+    });
+
+    startPreviewRotation();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const usesPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const projectMenu = document.querySelector('.project-menu');
+    const menuItems = projectButtons.map(button => ({
+      button,
+      row: button.closest('li'),
+      stretch: 1.2,
+      width: 1,
+      weight: 500,
+      leading: 1.108
+    }));
+
+    let previousY = window.scrollY;
+    let wind = 0;
+    let windTarget = 0;
+    let cursorY = null;
+    let interactionPaused = false;
+    let resumeTimer;
+    let animationFrame;
+
+    function renderIndexMotion() {
+      const viewportHeight = window.innerHeight;
+      const zoneBottom = viewportHeight * .3;
+      const zoneDepth = viewportHeight * .24;
+
+      wind += (windTarget - wind) * .18;
+      windTarget *= .85;
+      document.documentElement.style.setProperty('--wind', `${wind * 4}px`);
+      document.documentElement.style.setProperty('--wind-skew', `${wind * -1}deg`);
+
+      menuItems.forEach(item => {
+        if (interactionPaused) return;
+        const top = item.row.getBoundingClientRect().top;
+        const upperProgress = usesPointer
+          ? cursorY === null ? 0 : Math.max(0, Math.min(1, (cursorY - top) / zoneDepth))
+          : Math.max(0, Math.min(1, (zoneBottom - top) / zoneDepth));
+        const targetStretch = 1.2 + upperProgress * (usesPointer ? .16 : .17);
+        const targetWidth = 1 - upperProgress * (usesPointer ? .2 : .2);
+        const targetWeight = 500 - upperProgress * (usesPointer ? 200 : 170);
+        const targetLeading = 1.108 + upperProgress * (usesPointer ? .075 : .04);
+
+        item.stretch += (targetStretch - item.stretch) * .18;
+        item.width += (targetWidth - item.width) * .18;
+        item.weight += (targetWeight - item.weight) * .18;
+        item.leading += (targetLeading - item.leading) * .18;
+
+        item.button.style.setProperty('--item-stretch', item.stretch.toFixed(4));
+        item.button.style.setProperty('--item-width', item.width.toFixed(4));
+        item.button.style.setProperty('--item-weight', Math.round(item.weight));
+        item.row.style.setProperty('--item-leading', item.leading.toFixed(4));
+      });
+
+      animationFrame = requestAnimationFrame(renderIndexMotion);
+    }
+
+    if (!reduceMotion) {
+      if (usesPointer) {
+        projectMenu.addEventListener('pointerdown', () => {
+          interactionPaused = true;
+          wind = 0;
+          windTarget = 0;
+          document.documentElement.style.setProperty('--wind', '0px');
+          document.documentElement.style.setProperty('--wind-skew', '0deg');
+          clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(() => {
+            interactionPaused = false;
+          }, 260);
+        });
+        projectMenu.addEventListener('pointermove', event => {
+          cursorY = event.clientY;
+        }, { passive: true });
+        projectMenu.addEventListener('pointerleave', () => {
+          clearTimeout(resumeTimer);
+          cursorY = null;
+          interactionPaused = false;
+        }, { passive: true });
+      }
+
+      window.addEventListener('scroll', () => {
+        const delta = window.scrollY - previousY;
+        previousY = window.scrollY;
+        windTarget = Math.max(-1, Math.min(1, delta / 20));
+      }, { passive: true });
+      animationFrame = requestAnimationFrame(renderIndexMotion);
+    }
+  </script>
+</body>
+</html>

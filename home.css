@@ -1,0 +1,323 @@
+@font-face {
+  font-family: "General Sans";
+  src: url("GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+@property --hover-scale {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+html {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 38px;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-VariableItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+:root {
+  --home-edge: 10px;
+  --contact-bottom: 14px;
+  --home-gutter: clamp(10px, .75vw, 18px);
+  --home-column: min(72vw, 1080px);
+  --plus-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 5V23M5 14H23' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M14 5V23M5 14H23' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") 14 14, crosshair;
+  --plus-cursor-large: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Cpath d='M19 5V33M5 19H33' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M19 5V33M5 19H33' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 19 19, crosshair;
+  --wind: 0px;
+  --wind-skew: 0deg;
+}
+
+.portfolio-home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  color: #050505;
+  background: #fff;
+  font-family: "General Sans", Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  cursor: var(--plus-cursor);
+}
+
+.portfolio-home button,
+.portfolio-home a {
+  color: inherit;
+  cursor: var(--plus-cursor-large);
+}
+
+.portfolio-home a { text-decoration: none; }
+
+.home-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 27.5% 1fr auto;
+  align-items: start;
+  padding: var(--home-edge) var(--home-gutter) 0;
+  color: #050505;
+  background: #fff;
+  /* The supplied 12 pt artwork maps to 12 px at its 72 ppi layout scale. */
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
+  mix-blend-mode: normal;
+}
+
+.home-header > * {
+  transform: scaleY(1.2);
+  transform-origin: top left;
+}
+
+.home-header p {
+  text-align: left;
+}
+
+.home-contact {
+  position: static;
+  align-self: flex-end;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: end;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  text-align: right;
+  margin: auto var(--home-gutter) var(--contact-bottom) auto;
+  transform: scaleY(1.2);
+  transform-origin: bottom right;
+}
+
+.home-contact a {
+  color: inherit;
+  text-decoration: none;
+  text-shadow: none;
+  transition: font-weight .14s ease;
+}
+
+.home-contact a:hover,
+.home-contact a:focus-visible,
+.home-contact a:active {
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.portfolio-composition {
+  position: relative;
+  width: var(--home-column);
+  min-height: 0;
+  margin-left: 27.5%;
+  padding-top: 38px;
+  padding-bottom: 0;
+}
+
+.project-preview { margin: 0; }
+
+.project-preview__surface {
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: filter .2s ease, opacity .2s ease;
+}
+
+.project-preview--top.has-project-image .project-preview__surface {
+  filter: grayscale(1);
+}
+
+.project-preview--top.has-project-image.is-interactive .project-preview__surface {
+  filter: none;
+}
+
+.project-preview figcaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.project-preview--top {
+  width: clamp(140px, 11.5vw, 178px);
+  aspect-ratio: 210 / 297;
+  scroll-snap-align: start;
+}
+
+.composition-mark {
+  position: absolute;
+  font-family: Arial, sans-serif;
+  font-size: clamp(26px, 2.2vw, 36px);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.composition-mark--top {
+  top: calc(38px + clamp(198px, 16.26vw, 252px));
+  left: 29%;
+  transform: translateY(-50%);
+}
+
+.project-menu {
+  width: min(100%, 740px);
+  margin-top: 14px;
+}
+
+.project-menu ul { margin: 0; padding: 0; list-style: none; }
+
+.project-menu li {
+  margin: 0;
+  padding: 0;
+  line-height: var(--item-leading, 1.108);
+}
+
+.project-menu li.project-menu__indent { padding-left: 56px; }
+
+.project-menu button {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: var(--item-weight, 500);
+  letter-spacing: 0;
+  text-align: left;
+  cursor: var(--plus-cursor-large);
+  transform: translateX(var(--wind)) skewX(var(--wind-skew)) skewX(var(--interaction-skew, 0deg)) scale(var(--hover-scale, 1)) scaleX(var(--item-width, 1)) scaleY(var(--item-stretch, 1.2));
+  transform-origin: left center;
+  transition: --hover-scale .12s ease-out, padding .15s ease-out, color .12s ease-out, font-weight .12s ease-out;
+  will-change: transform;
+}
+
+.project-menu strong {
+  font-size: 18px;
+  font-weight: var(--item-weight, 500);
+}
+
+.project-menu button:hover,
+.project-menu button:focus-visible {
+  --hover-scale: 1.15;
+  font-style: italic;
+  font-weight: 700;
+  outline: none;
+}
+
+.project-menu button:hover strong,
+.project-menu button:focus-visible strong { font-weight: 700; }
+
+/* The italic direction alternates while the index still follows the scroll. */
+.project-menu li:nth-child(odd) button:hover,
+.project-menu li:nth-child(odd) button:focus-visible {
+  --interaction-skew: 20deg;
+}
+
+.project-menu li:nth-child(even) button:hover,
+.project-menu li:nth-child(even) button:focus-visible {
+  --interaction-skew: -9deg;
+}
+
+.project-menu button.is-selected {
+  --hover-scale: 1.15;
+  font-style: italic;
+  font-weight: 700;
+  transform: translateX(var(--wind)) skewX(var(--wind-skew)) skewX(var(--interaction-skew, 0deg)) scale(var(--hover-scale, 1)) scaleX(var(--item-width, 1)) scaleY(var(--item-stretch, 1.2));
+}
+
+.project-menu button.is-selected strong { font-weight: 700; }
+
+@media (max-width: 800px) {
+  html {
+    scroll-snap-type: none;
+    scroll-padding-top: 10px;
+  }
+
+  :root { --home-column: auto; }
+
+  .home-header {
+    position: fixed;
+    width: 100%;
+    grid-template-columns: 1fr auto;
+    row-gap: 4px;
+    padding: var(--home-edge);
+    background: transparent;
+  }
+
+  .home-header > p {
+    display: block;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .home-contact {
+    position: static;
+    width: 100%;
+    grid-template-columns: 1fr;
+    justify-items: end;
+    padding: 12px 10px 0;
+    margin: auto 0 var(--contact-bottom);
+    background: transparent;
+    font-size: 11px;
+    transform-origin: top right;
+  }
+
+  .portfolio-composition {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 38px 10px 20px;
+  }
+
+  .project-preview--top {
+    display: none;
+  }
+  .composition-mark--top {
+    display: none;
+  }
+  .project-menu { width: 100%; margin-top: 14px; }
+  .project-menu li { line-height: var(--item-leading, 1.108); }
+  .project-menu li.project-menu__indent { padding-left: 34px; }
+  .project-menu button { font-size: clamp(11px, 3.3vw, 14px); }
+  .project-menu strong { font-size: clamp(14px, 4.2vw, 18px); }
+
+  .project-menu button.is-selected {
+    --hover-scale: 1.28;
+  }
+
+  .project-menu li:nth-child(odd) button.is-selected {
+    --interaction-skew: 26deg;
+  }
+
+  .project-menu li:nth-child(even) button.is-selected {
+    --interaction-skew: -18deg;
+  }
+
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --wind: 0px;
+    --wind-skew: 0deg;
+  }
+
+  .project-menu li { transition: none; }
+  .project-menu button { transform: scaleY(1.2); transition: none; }
+}
