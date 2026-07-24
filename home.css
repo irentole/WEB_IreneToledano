@@ -80,6 +80,10 @@ html {
   transform-origin: top left;
 }
 
+.home-header > a {
+  color: #f00;
+}
+
 .home-header p {
   text-align: left;
 }
