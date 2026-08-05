@@ -10,8 +10,9 @@
 </head>
 <body class="portfolio-home">
   <header class="home-header">
-    <a href="index.html">Irene Toledano</a>
+    <a class="home-name" href="index.html">Irene Toledano</a>
     <p>Design Portfolio</p>
+    <a class="home-about" href="#about">About</a>
   </header>
 
   <main class="portfolio-composition">
@@ -20,42 +21,40 @@
       <figcaption>Project preview</figcaption>
     </figure>
 
-    <span class="composition-mark composition-mark--top" aria-hidden="true">+</span>
-
     <nav class="project-menu" aria-label="Projects">
       <ul>
-        <li><button data-project="SubTexture" data-href="subtexture.html"><strong>SubTexture</strong> — editorial design</button></li>
-        <li><button data-project="¡Vámonos de compras!" data-href="vamonos-de-compras.html"><strong>¡Vámonos de compras!</strong> — graphic design</button></li>
-        <li><button data-project="Synchro WA"><strong>Synchro WA</strong> — visual identity</button></li>
-        <li><button data-project="Australian Artistic Swimming Championship 2023" data-href="australian-artistic-swimming-championship-2023.html"><strong>Australian Artistic Swimming Championship 2023</strong> — poster</button></li>
-        <li><button data-project="Artistic Swimming WA" data-href="index_DG.html"><strong>Artistic Swimming WA</strong> — logo design</button></li>
-        <li><button data-project="Basel Aquatics" data-href="basel-aquatics.html"><strong>Basel Aquatics</strong> — logo design</button></li>
-        <li><button data-project="Así se as"><strong>así se as</strong> — logo design</button></li>
-        <li><button data-project="Chipén" data-href="imágenes_DG/PDF_GRÁFICO.pdf"><strong>Chipén</strong> — packaging + illustration</button></li>
-        <li><button data-project="Lady Choll"><strong>Lady Chollo</strong> — illustration</button></li>
-        <li><button data-project="El cocodrilo"><strong>El cocodrilo</strong> — editorial design + graphic design</button></li>
-        <li class="project-menu__indent"><button data-project="MHT chairs" data-href="Sillas.html"><strong>MHT chairs</strong> — object design + photography + graphic design</button></li>
-        <li class="project-menu__indent"><button data-project="D PATA NEGRA" data-href="d-pata-negra.html"><strong>D PATA NEGRA</strong> — photography + art</button></li>
-        <li class="project-menu__indent"><button data-project="Mundo fluctuante" data-href="fluctuating.html"><strong>Mundo fluctuante</strong> — concept design + graphic design</button></li>
-        <li class="project-menu__indent"><button data-project="FOOD JEWELS" data-href="PDF_DO/FOODJEWELS.pdf"><strong>FOOD JEWELS</strong> — object design + art direction + photography</button></li>
-        <li class="project-menu__indent"><button data-project="linked"><strong>linked</strong> — photography</button></li>
-        <li class="project-menu__indent"><button data-project="Cuando el Sol perdió a la Luna"><strong>Cuando el Sol perdió a la Luna</strong> — art + photography</button></li>
-        <li class="project-menu__indent"><button data-project="McRib" data-href="mcrib.html"><strong>McRib</strong> — art</button></li>
-        <li class="project-menu__indent"><button data-project="Ortiz" data-href="ortiz.html"><strong>Ortiz</strong> — art</button></li>
-        <li class="project-menu__indent"><button data-project="BioPark"><strong>BioPark</strong> — storyboard</button></li>
-        <li class="project-menu__indent"><button data-project="lunnetes"><strong>lunnetes</strong> — storyboard + ideation + direction</button></li>
-        <li class="project-menu__indent"><button data-project="CEVISAMA"><strong>CEVISAMA</strong> — photography</button></li>
-        <li><button data-project="girls talk" data-href="girls-talk.html"><strong>girls talk</strong> — painting, acrylic on canvas</button></li>
-        <li><button data-project="after party"><strong>after party</strong> — painting, acrylic on canvas</button></li>
-        <li><button data-project="Thoughts and Emotions" data-href="thoughts-and-emotions.html"><strong>Thoughts and Emotions</strong> — print, acrylic on cardboard</button></li>
-        <li><button data-project="The fear of dreaming"><strong>The fear of dreaming</strong> — painting, acrylic on canvas</button></li>
-        <li><button data-project="DRAGONS"><strong>DRAGONS</strong> — painting, mixed techniques</button></li>
+        <li><button data-project="SubTexture" data-type="editorial" data-href="subtexture.html"><strong>SubTexture</strong> editorial design</button></li>
+        <li><button data-project="¡Vámonos de compras!" data-type="editorial" data-href="vamonos-de-compras.html"><strong>¡Vámonos de compras!</strong> editorial design</button></li>
+        <li><button data-project="Synchro WA" data-type="identity"><strong>Synchro WA</strong> visual identity</button></li>
+        <li><button data-project="Australian Artistic Swimming Championship 2023" data-type="identity" data-href="australian-artistic-swimming-championship-2023.html"><strong>Australian Artistic Swimming Championship 2023</strong> visual identity</button></li>
+        <li><button data-project="Artistic Swimming WA" data-type="identity" data-href="index_DG.html"><strong>Artistic Swimming WA</strong> visual identity</button></li>
+        <li><button data-project="Basel Aquatics" data-type="identity" data-href="basel-aquatics.html"><strong>Basel Aquatics</strong> visual identity</button></li>
+        <li><button data-project="Así se as" data-type="identity"><strong>así se as</strong> visual identity</button></li>
+        <li><button data-project="Chipén" data-type="identity" data-href="imágenes_DG/PDF_GRÁFICO.pdf"><strong>Chipén</strong> visual identity</button></li>
+        <li><button data-project="Lady Choll" data-type="illustration"><strong>Lady Chollo</strong> illustration</button></li>
+        <li><button data-project="El cocodrilo" data-type="editorial"><strong>El cocodrilo</strong> editorial design + graphic design</button></li>
+        <li class="project-menu__indent"><button data-project="MHT chairs" data-type="object" data-href="Sillas.html"><strong>MHT chairs</strong> object design + photography + graphic design</button></li>
+        <li class="project-menu__indent"><button data-project="D PATA NEGRA" data-type="photography" data-href="d-pata-negra.html"><strong>D PATA NEGRA</strong> photography + art</button></li>
+        <li class="project-menu__indent"><button data-project="Mundo fluctuante" data-type="concept" data-href="fluctuating.html"><strong>Mundo fluctuante</strong> concept design + graphic design</button></li>
+        <li class="project-menu__indent"><button data-project="FOOD JEWELS" data-type="object" data-href="PDF_DO/FOODJEWELS.pdf"><strong>FOOD JEWELS</strong> object design + art direction + photography</button></li>
+        <li class="project-menu__indent"><button data-project="linked" data-type="photography"><strong>linked</strong> photography</button></li>
+        <li class="project-menu__indent"><button data-project="Cuando el Sol perdió a la Luna" data-type="art"><strong>Cuando el Sol perdió a la Luna</strong> art + photography</button></li>
+        <li class="project-menu__indent"><button data-project="McRib" data-type="art" data-href="mcrib.html"><strong>McRib</strong> art</button></li>
+        <li class="project-menu__indent"><button data-project="Ortiz" data-type="art" data-href="ortiz.html"><strong>Ortiz</strong> art</button></li>
+        <li class="project-menu__indent"><button data-project="BioPark" data-type="storyboard"><strong>BioPark</strong> storyboard</button></li>
+        <li class="project-menu__indent"><button data-project="lunnetes" data-type="storyboard"><strong>lunnetes</strong> storyboard + ideation + direction</button></li>
+        <li class="project-menu__indent"><button data-project="CEVISAMA" data-type="photography"><strong>CEVISAMA</strong> photography</button></li>
+        <li><button data-project="girls talk" data-type="painting" data-href="girls-talk.html"><strong>girls talk</strong> painting, acrylic on canvas</button></li>
+        <li><button data-project="after party" data-type="painting"><strong>after party</strong> painting, acrylic on canvas</button></li>
+        <li><button data-project="Thoughts and Emotions" data-type="painting" data-href="thoughts-and-emotions.html"><strong>Thoughts and Emotions</strong> print, acrylic on cardboard</button></li>
+        <li><button data-project="The fear of dreaming" data-type="painting"><strong>The fear of dreaming</strong> painting, acrylic on canvas</button></li>
+        <li><button data-project="DRAGONS" data-type="painting"><strong>DRAGONS</strong> painting, mixed techniques</button></li>
       </ul>
     </nav>
 
   </main>
 
-  <address class="home-contact">
+  <address class="home-contact" id="about">
     <a href="mailto:irene.toledanocarmelo@gmail.com">irene.toledanocarmelo@gmail.com</a>
     <a href="tel:+34680698921">+34 680698921</a>
     <a href="tel:+41782242249">+41 78 224 2249</a>
@@ -63,6 +62,7 @@
 
   <script>
     const projectButtons = [...document.querySelectorAll('.project-menu button')];
+    const homeName = document.querySelector('.home-name');
     const previews = [...document.querySelectorAll('.project-preview')];
     const primaryPreview = document.querySelector('.project-preview--top');
     const primaryPreviewSurface = primaryPreview.querySelector('.project-preview__surface');
@@ -78,6 +78,19 @@
       'McRib': 'Content/McRib/poster McRib.jpg',
       'girls talk': 'Content/girls talk/POSTER.png',
       'Thoughts and Emotions': 'Content/toughts and emotions/POSTER.png'
+    };
+    const projectPosterColors = {
+      'SubTexture': '#167f9b',
+      '¡Vámonos de compras!': '#72d2ee',
+      'Australian Artistic Swimming Championship 2023': '#069b89',
+      'Basel Aquatics': '#171717',
+      'D PATA NEGRA': '#c9342f',
+      'MHT chairs': '#303537',
+      'Mundo fluctuante': '#7958a7',
+      'Ortiz': '#d08a42',
+      'McRib': '#d84a28',
+      'girls talk': '#e88cae',
+      'Thoughts and Emotions': '#5968ae'
     };
 
     function showProjectPreview(button) {
@@ -96,7 +109,128 @@
     let hoveredProject = null;
     let focusedProject = null;
     let previewRotationTimer;
+    let smoothMobileScroll = window.scrollY;
+    let mobileGalleryOffset = 0;
+    let desktopGalleryOffset = 0;
+    let pinnedMobileProject = null;
+    let pinnedMobileOffset = null;
+    let pinnedDesktopProject = null;
+    let pinnedDesktopOffset = null;
+    let previousGalleryTime = null;
+    const mobileLayout = window.matchMedia('(max-width: 800px)');
+    const mobileCanHover = window.matchMedia('(max-width: 800px) and (hover: hover) and (pointer: fine)');
 
+    [false, true].forEach(isDuplicate => {
+      rotatingProjects.forEach(button => {
+        const image = document.createElement('img');
+        image.className = 'mobile-gallery__image';
+        image.dataset.project = button.dataset.project;
+        image.dataset.dominantColor = projectPosterColors[button.dataset.project] || '#b8b8b8';
+        if (button.dataset.href) image.dataset.href = button.dataset.href;
+        image.src = projectPreviewImages[button.dataset.project];
+        image.alt = isDuplicate ? '' : `Poster de ${button.dataset.project}`;
+        if (isDuplicate) {
+          image.setAttribute('aria-hidden', 'true');
+        } else if (button.dataset.href) {
+          image.setAttribute('role', 'link');
+          image.tabIndex = 0;
+        }
+        primaryPreviewSurface.appendChild(image);
+      });
+    });
+    const mobileGalleryImages = [...primaryPreviewSurface.querySelectorAll('.mobile-gallery__image')];
+
+    function extractPosterColor(image) {
+      try {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        canvas.width = 24;
+        canvas.height = 24;
+        context.drawImage(image, 0, 0, 24, 24);
+        const pixels = context.getImageData(0, 0, 24, 24).data;
+        const colors = new Map();
+        const neutralColors = new Map();
+        for (let index = 0; index < pixels.length; index += 4) {
+          if (pixels[index + 3] < 128) continue;
+          const sourceRed = pixels[index];
+          const sourceGreen = pixels[index + 1];
+          const sourceBlue = pixels[index + 2];
+          const maximum = Math.max(sourceRed, sourceGreen, sourceBlue);
+          const minimum = Math.min(sourceRed, sourceGreen, sourceBlue);
+          const saturation = maximum === 0 ? 0 : (maximum - minimum) / maximum;
+          const brightness = (sourceRed + sourceGreen + sourceBlue) / 3;
+          const red = Math.round(sourceRed / 24) * 24;
+          const green = Math.round(sourceGreen / 24) * 24;
+          const blue = Math.round(sourceBlue / 24) * 24;
+          const key = `${Math.min(red, 255)},${Math.min(green, 255)},${Math.min(blue, 255)}`;
+          neutralColors.set(key, (neutralColors.get(key) || 0) + 1);
+          if (saturation > .16 && brightness > 28 && brightness < 238) {
+            colors.set(key, (colors.get(key) || 0) + 1 + saturation * 2.5);
+          }
+        }
+        const palette = colors.size ? colors : neutralColors;
+        const dominant = [...palette].sort((a, b) => b[1] - a[1])[0];
+        if (dominant) {
+          const channels = dominant[0].split(',').map(Number);
+          const lifted = channels.map(channel => Math.round(channel + (255 - channel) * .12));
+          image.dataset.dominantColor = `rgb(${lifted.join(',')})`;
+        }
+      } catch (error) {
+        image.dataset.dominantColor = '#ffffff';
+      }
+    }
+
+    mobileGalleryImages.forEach(image => {
+      if (image.dataset.dominantColor) return;
+      if (image.complete) extractPosterColor(image);
+      else image.addEventListener('load', () => extractPosterColor(image), { once: true });
+    });
+
+    function updateGalleryEdgeColors() {
+      const galleryRect = primaryPreview.getBoundingClientRect();
+      const topPoint = galleryRect.top + 2;
+      const bottomPoint = galleryRect.bottom - 2;
+      const topImage = mobileGalleryImages.find(image => {
+        const rect = image.getBoundingClientRect();
+        return rect.top <= topPoint && rect.bottom >= topPoint;
+      });
+      const bottomImage = mobileGalleryImages.find(image => {
+        const rect = image.getBoundingClientRect();
+        return rect.top <= bottomPoint && rect.bottom >= bottomPoint;
+      });
+      if (topImage?.dataset.dominantColor) {
+        primaryPreview.style.setProperty('--gallery-top-color', topImage.dataset.dominantColor);
+      }
+      if (bottomImage?.dataset.dominantColor) {
+        primaryPreview.style.setProperty('--gallery-bottom-color', bottomImage.dataset.dominantColor);
+      }
+    }
+
+    function openGalleryProject(image) {
+      if (image.dataset.href) window.location.href = image.dataset.href;
+    }
+
+    mobileGalleryImages.forEach(image => {
+      const projectButton = projectButtons.find(button => button.dataset.project === image.dataset.project);
+      image.addEventListener('pointerenter', () => {
+        if (mobileCanHover.matches && projectButton) pinMobilePoster(projectButton);
+        if (!mobileLayout.matches && projectButton) pinDesktopPoster(projectButton);
+      });
+      image.addEventListener('pointerleave', () => {
+        if (mobileCanHover.matches && pinnedMobileProject === projectButton) {
+          pinnedMobileProject = null;
+          pinnedMobileOffset = null;
+        }
+        if (!mobileLayout.matches && pinnedDesktopProject === projectButton) {
+          pinnedDesktopProject = null;
+          pinnedDesktopOffset = null;
+        }
+      });
+      image.addEventListener('click', () => openGalleryProject(image));
+      image.addEventListener('keydown', event => {
+        if (event.key === 'Enter') openGalleryProject(image);
+      });
+    });
     function showNextProjectPreview() {
       if (!rotatingProjects.length || hoveredProject || focusedProject) return;
       showProjectPreview(rotatingProjects[rotatingProjectIndex]);
@@ -108,7 +242,65 @@
       if (hoveredProject || focusedProject) return;
       primaryPreview.classList.remove('is-interactive');
       showNextProjectPreview();
+      if (mobileLayout.matches) return;
       previewRotationTimer = setInterval(showNextProjectPreview, 800);
+    }
+
+    function animateMobileGallery(time) {
+      const frameDuration = previousGalleryTime === null ? 0 : Math.min(40, time - previousGalleryTime);
+      previousGalleryTime = time;
+      if (mobileLayout.matches) {
+        const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+        if (loopHeight > 0) {
+          const previousSmoothScroll = smoothMobileScroll;
+          smoothMobileScroll += (window.scrollY - smoothMobileScroll) * .075;
+          if (pinnedMobileOffset !== null) {
+            let distance = (pinnedMobileOffset - mobileGalleryOffset) % loopHeight;
+            if (distance > loopHeight / 2) distance -= loopHeight;
+            if (distance < -loopHeight / 2) distance += loopHeight;
+            mobileGalleryOffset = (mobileGalleryOffset + distance * .09 + loopHeight) % loopHeight;
+          } else {
+            mobileGalleryOffset = (mobileGalleryOffset + frameDuration * .024 + (smoothMobileScroll - previousSmoothScroll) * 1.35 + loopHeight) % loopHeight;
+          }
+          primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
+          updateGalleryEdgeColors();
+        }
+      } else {
+        const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+        if (loopHeight > 0) {
+          if (pinnedDesktopOffset !== null) {
+            let distance = (pinnedDesktopOffset - desktopGalleryOffset) % loopHeight;
+            if (distance > loopHeight / 2) distance -= loopHeight;
+            if (distance < -loopHeight / 2) distance += loopHeight;
+            desktopGalleryOffset = (desktopGalleryOffset + distance * .09 + loopHeight) % loopHeight;
+          } else {
+            desktopGalleryOffset = (desktopGalleryOffset + frameDuration * .024) % loopHeight;
+          }
+          primaryPreviewSurface.style.transform = `translateY(${-desktopGalleryOffset}px)`;
+          updateGalleryEdgeColors();
+        }
+      }
+      requestAnimationFrame(animateMobileGallery);
+    }
+
+    function pinMobilePoster(button) {
+      const image = mobileGalleryImages.find(item => item.dataset.project === button.dataset.project);
+      if (!image) return false;
+      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      if (loopHeight <= 0 || image.offsetHeight <= 0) return false;
+      pinnedMobileProject = button;
+      pinnedMobileOffset = ((image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2) % loopHeight + loopHeight) % loopHeight;
+      return true;
+    }
+
+    function pinDesktopPoster(button) {
+      const image = mobileGalleryImages.find(item => item.dataset.project === button.dataset.project);
+      if (!image) return false;
+      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      if (loopHeight <= 0 || image.offsetHeight <= 0) return false;
+      pinnedDesktopProject = button;
+      pinnedDesktopOffset = ((image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2) % loopHeight + loopHeight) % loopHeight;
+      return true;
     }
 
     function showInteractivePreview() {
@@ -128,6 +320,9 @@
         item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
       });
       previews.forEach(preview => preview.dataset.project = button.dataset.project);
+      if (mobileLayout.matches && projectPreviewImages[button.dataset.project]) {
+        if (pinnedMobileProject !== button && pinMobilePoster(button)) return;
+      }
       if (button.dataset.href) {
         if (usesPointer || reduceMotion) {
           window.location.href = button.dataset.href;
@@ -144,6 +339,12 @@
       button.addEventListener('click', () => selectProject(button));
       button.addEventListener('pointerenter', () => {
         hoveredProject = button;
+        if (mobileCanHover.matches && projectPreviewImages[button.dataset.project]) {
+          pinMobilePoster(button);
+        }
+        if (!mobileLayout.matches && projectPreviewImages[button.dataset.project]) {
+          pinDesktopPoster(button);
+        }
         showInteractivePreview();
       });
       button.addEventListener('focus', () => {
@@ -152,6 +353,14 @@
       });
       button.addEventListener('pointerleave', () => {
         if (hoveredProject === button) hoveredProject = null;
+        if (mobileCanHover.matches && pinnedMobileProject === button) {
+          pinnedMobileProject = null;
+          pinnedMobileOffset = null;
+        }
+        if (!mobileLayout.matches && pinnedDesktopProject === button) {
+          pinnedDesktopProject = null;
+          pinnedDesktopOffset = null;
+        }
         showInteractivePreview();
       });
       button.addEventListener('blur', () => {
@@ -191,6 +400,9 @@
       windTarget *= .85;
       document.documentElement.style.setProperty('--wind', `${wind * 4}px`);
       document.documentElement.style.setProperty('--wind-skew', `${wind * -1}deg`);
+      if (mobileLayout.matches) {
+        document.documentElement.style.setProperty('--gallery-compress', `${Math.abs(wind) * 5}vw`);
+      }
 
       menuItems.forEach(item => {
         if (interactionPaused) return;
@@ -244,8 +456,17 @@
         const delta = window.scrollY - previousY;
         previousY = window.scrollY;
         windTarget = Math.max(-1, Math.min(1, delta / 20));
+        if (mobileLayout.matches) {
+          if (delta < -1 && window.scrollY > 10) homeName.classList.add('is-hidden');
+          if (delta > 1 || window.scrollY <= 2) homeName.classList.remove('is-hidden');
+        }
+        if (mobileLayout.matches && Math.abs(delta) > 1) {
+          pinnedMobileProject = null;
+          pinnedMobileOffset = null;
+        }
       }, { passive: true });
       animationFrame = requestAnimationFrame(renderIndexMotion);
+      requestAnimationFrame(animateMobileGallery);
     }
   </script>
 </body>
