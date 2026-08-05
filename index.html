@@ -140,6 +140,36 @@
     });
     const mobileGalleryImages = [...primaryPreviewSurface.querySelectorAll('.mobile-gallery__image')];
 
+    function releasePinnedGalleryProject() {
+      pinnedMobileProject = null;
+      pinnedMobileOffset = null;
+      pinnedDesktopProject = null;
+      pinnedDesktopOffset = null;
+      clearActiveGalleryProject();
+    }
+
+    primaryPreview.addEventListener('wheel', event => {
+      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      if (loopHeight <= 0) return;
+
+      event.preventDefault();
+      releasePinnedGalleryProject();
+
+      const lineHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const unit = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+        ? lineHeight
+        : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+          ? primaryPreview.clientHeight
+          : 1;
+      const gestureDelta = (Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX) * unit;
+
+      if (mobileLayout.matches) {
+        mobileGalleryOffset = (mobileGalleryOffset + gestureDelta + loopHeight) % loopHeight;
+      } else {
+        desktopGalleryOffset = (desktopGalleryOffset + gestureDelta + loopHeight) % loopHeight;
+      }
+    }, { passive: false });
+
     function extractPosterColor(image) {
       try {
         const canvas = document.createElement('canvas');
@@ -210,6 +240,18 @@
       if (image.dataset.href) window.location.href = image.dataset.href;
     }
 
+    function setActiveGalleryProject(project) {
+      primaryPreview.classList.add('has-active-project');
+      mobileGalleryImages.forEach(image => {
+        image.classList.toggle('is-active-project', image.dataset.project === project);
+      });
+    }
+
+    function clearActiveGalleryProject() {
+      primaryPreview.classList.remove('has-active-project');
+      mobileGalleryImages.forEach(image => image.classList.remove('is-active-project'));
+    }
+
     mobileGalleryImages.forEach(image => {
       const projectButton = projectButtons.find(button => button.dataset.project === image.dataset.project);
       image.addEventListener('pointerenter', () => {
@@ -220,10 +262,12 @@
         if (mobileCanHover.matches && pinnedMobileProject === projectButton) {
           pinnedMobileProject = null;
           pinnedMobileOffset = null;
+          clearActiveGalleryProject();
         }
         if (!mobileLayout.matches && pinnedDesktopProject === projectButton) {
           pinnedDesktopProject = null;
           pinnedDesktopOffset = null;
+          clearActiveGalleryProject();
         }
       });
       image.addEventListener('click', () => openGalleryProject(image));
@@ -290,6 +334,7 @@
       if (loopHeight <= 0 || image.offsetHeight <= 0) return false;
       pinnedMobileProject = button;
       pinnedMobileOffset = ((image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2) % loopHeight + loopHeight) % loopHeight;
+      setActiveGalleryProject(button.dataset.project);
       return true;
     }
 
@@ -300,6 +345,7 @@
       if (loopHeight <= 0 || image.offsetHeight <= 0) return false;
       pinnedDesktopProject = button;
       pinnedDesktopOffset = ((image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2) % loopHeight + loopHeight) % loopHeight;
+      setActiveGalleryProject(button.dataset.project);
       return true;
     }
 
@@ -356,10 +402,12 @@
         if (mobileCanHover.matches && pinnedMobileProject === button) {
           pinnedMobileProject = null;
           pinnedMobileOffset = null;
+          clearActiveGalleryProject();
         }
         if (!mobileLayout.matches && pinnedDesktopProject === button) {
           pinnedDesktopProject = null;
           pinnedDesktopOffset = null;
+          clearActiveGalleryProject();
         }
         showInteractivePreview();
       });
@@ -463,6 +511,7 @@
         if (mobileLayout.matches && Math.abs(delta) > 1) {
           pinnedMobileProject = null;
           pinnedMobileOffset = null;
+          clearActiveGalleryProject();
         }
       }, { passive: true });
       animationFrame = requestAnimationFrame(renderIndexMotion);
