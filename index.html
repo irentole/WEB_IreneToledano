@@ -110,7 +110,6 @@
     let hoveredProject = null;
     let focusedProject = null;
     let previewRotationTimer;
-    let smoothMobileScroll = window.scrollY;
     let mobileGalleryOffset = 0;
     let desktopGalleryOffset = 0;
     let pinnedMobileProject = null;
@@ -193,6 +192,9 @@
       const dragDistance = galleryDragStartY - event.clientY;
       if (Math.abs(dragDistance) > 6) galleryDragMoved = true;
       mobileGalleryOffset = (galleryDragStartOffset + dragDistance + loopHeight) % loopHeight;
+      primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
+      updateGalleryEdgeColors();
+      updateGalleryPosterEffects();
       event.preventDefault();
     }, { passive: false });
 
@@ -372,15 +374,13 @@
       if (mobileLayout.matches) {
         const loopHeight = primaryPreviewSurface.scrollHeight / 2;
         if (loopHeight > 0) {
-          const previousSmoothScroll = smoothMobileScroll;
-          smoothMobileScroll += (window.scrollY - smoothMobileScroll) * .075;
           if (pinnedMobileOffset !== null) {
             let distance = (pinnedMobileOffset - mobileGalleryOffset) % loopHeight;
             if (distance > loopHeight / 2) distance -= loopHeight;
             if (distance < -loopHeight / 2) distance += loopHeight;
             mobileGalleryOffset = (mobileGalleryOffset + distance * .09 + loopHeight) % loopHeight;
           } else if (galleryDragPointer === null) {
-            mobileGalleryOffset = (mobileGalleryOffset + frameDuration * .024 + (smoothMobileScroll - previousSmoothScroll) * 1.35 + loopHeight) % loopHeight;
+            mobileGalleryOffset = (mobileGalleryOffset + frameDuration * .024 + loopHeight) % loopHeight;
           }
           primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
           updateGalleryEdgeColors();
@@ -500,6 +500,7 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const usesPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const projectMenu = document.querySelector('.project-menu');
+    const indexScroller = document.querySelector('.portfolio-composition');
     const menuItems = projectButtons.map(button => ({
       button,
       row: button.closest('li'),
@@ -578,20 +579,19 @@
         }, { passive: true });
       }
 
-      window.addEventListener('scroll', () => {
-        const delta = window.scrollY - previousY;
-        previousY = window.scrollY;
+      function handleIndexScroll() {
+        const currentY = mobileLayout.matches ? indexScroller.scrollTop : window.scrollY;
+        const delta = currentY - previousY;
+        previousY = currentY;
         windTarget = Math.max(-1, Math.min(1, delta / 20));
         if (mobileLayout.matches) {
-          if (delta < -1 && window.scrollY > 10) homeName.classList.add('is-hidden');
-          if (delta > 1 || window.scrollY <= 2) homeName.classList.remove('is-hidden');
+          if (delta < -1 && currentY > 10) homeName.classList.add('is-hidden');
+          if (delta > 1 || currentY <= 2) homeName.classList.remove('is-hidden');
         }
-        if (mobileLayout.matches && Math.abs(delta) > 1) {
-          pinnedMobileProject = null;
-          pinnedMobileOffset = null;
-          clearActiveGalleryProject();
-        }
-      }, { passive: true });
+      }
+
+      window.addEventListener('scroll', handleIndexScroll, { passive: true });
+      indexScroller.addEventListener('scroll', handleIndexScroll, { passive: true });
       animationFrame = requestAnimationFrame(renderIndexMotion);
       requestAnimationFrame(animateMobileGallery);
     }

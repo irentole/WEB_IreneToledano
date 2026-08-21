@@ -477,6 +477,14 @@ html {
   html {
     scroll-snap-type: none;
     scroll-padding-top: 10px;
+    overflow: hidden;
+  }
+
+  .portfolio-home {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+    overflow: hidden;
   }
 
   :root {
@@ -531,10 +539,20 @@ html {
 
   .portfolio-composition {
     width: var(--mobile-column);
+    height: 100vh;
+    height: 100svh;
     min-height: 0;
     margin-left: var(--mobile-margin);
     padding: 38px 0 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
+
+  .portfolio-composition::-webkit-scrollbar { display: none; }
 
   .project-preview--top {
     position: fixed;
