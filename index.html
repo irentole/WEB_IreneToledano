@@ -118,6 +118,11 @@
     let pinnedDesktopProject = null;
     let pinnedDesktopOffset = null;
     let previousGalleryTime = null;
+    let galleryDragPointer = null;
+    let galleryDragStartY = 0;
+    let galleryDragStartOffset = 0;
+    let galleryDragMoved = false;
+    let suppressGalleryClickUntil = 0;
     const mobileLayout = window.matchMedia('(max-width: 800px)');
     const mobileCanHover = window.matchMedia('(max-width: 800px) and (hover: hover) and (pointer: fine)');
 
@@ -170,6 +175,36 @@
         desktopGalleryOffset = (desktopGalleryOffset + gestureDelta + loopHeight) % loopHeight;
       }
     }, { passive: false });
+
+    primaryPreview.addEventListener('pointerdown', event => {
+      if (!mobileLayout.matches || event.pointerType !== 'touch') return;
+      galleryDragPointer = event.pointerId;
+      galleryDragStartY = event.clientY;
+      galleryDragStartOffset = mobileGalleryOffset;
+      galleryDragMoved = false;
+      releasePinnedGalleryProject();
+      primaryPreview.setPointerCapture(event.pointerId);
+    });
+
+    primaryPreview.addEventListener('pointermove', event => {
+      if (event.pointerId !== galleryDragPointer) return;
+      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      if (loopHeight <= 0) return;
+      const dragDistance = galleryDragStartY - event.clientY;
+      if (Math.abs(dragDistance) > 6) galleryDragMoved = true;
+      mobileGalleryOffset = (galleryDragStartOffset + dragDistance + loopHeight) % loopHeight;
+      event.preventDefault();
+    }, { passive: false });
+
+    function finishGalleryDrag(event) {
+      if (event.pointerId !== galleryDragPointer) return;
+      if (galleryDragMoved) suppressGalleryClickUntil = performance.now() + 350;
+      galleryDragPointer = null;
+      galleryDragMoved = false;
+    }
+
+    primaryPreview.addEventListener('pointerup', finishGalleryDrag);
+    primaryPreview.addEventListener('pointercancel', finishGalleryDrag);
 
     function extractPosterColor(image) {
       try {
@@ -307,7 +342,11 @@
           clearActiveGalleryProject();
         }
       });
-      image.addEventListener('click', () => openGalleryProject(image));
+      image.addEventListener('click', () => {
+        if (performance.now() < suppressGalleryClickUntil) return;
+        if (projectButton) selectProject(projectButton);
+        else openGalleryProject(image);
+      });
       image.addEventListener('keydown', event => {
         if (event.key === 'Enter') openGalleryProject(image);
       });
@@ -340,7 +379,7 @@
             if (distance > loopHeight / 2) distance -= loopHeight;
             if (distance < -loopHeight / 2) distance += loopHeight;
             mobileGalleryOffset = (mobileGalleryOffset + distance * .09 + loopHeight) % loopHeight;
-          } else {
+          } else if (galleryDragPointer === null) {
             mobileGalleryOffset = (mobileGalleryOffset + frameDuration * .024 + (smoothMobileScroll - previousSmoothScroll) * 1.35 + loopHeight) % loopHeight;
           }
           primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
@@ -406,7 +445,7 @@
       });
       previews.forEach(preview => preview.dataset.project = button.dataset.project);
       if (mobileLayout.matches && projectPreviewImages[button.dataset.project]) {
-        if (pinnedMobileProject !== button && pinMobilePoster(button)) return;
+        if (pinnedMobileProject !== button) pinMobilePoster(button);
       }
       if (button.dataset.href) {
         if (usesPointer || reduceMotion) {

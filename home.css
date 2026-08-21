@@ -548,6 +548,7 @@ html {
     max-width: none;
     aspect-ratio: auto;
     overflow: hidden;
+    touch-action: none;
     background: transparent;
     transition: width .18s ease-out, --gallery-top-color .8s ease, --gallery-bottom-color .8s ease;
   }
@@ -641,7 +642,7 @@ html {
   }
   .project-menu strong {
     display: block;
-    font-size: clamp(12.5px, calc(3.5vw + .5px), 15.5px);
+    font-size: clamp(13px, calc(3.5vw + 1px), 16px);
     line-height: .9;
   }
 
