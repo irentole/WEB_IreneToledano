@@ -22,6 +22,7 @@
     </figure>
 
     <nav class="project-menu" aria-label="Projects">
+      <p class="project-menu__title">INDEX</p>
       <ul>
         <li><button data-project="SubTexture" data-type="editorial" data-href="subtexture.html"><strong>SubTexture</strong> editorial design</button></li>
         <li><button data-project="¡Vámonos de compras!" data-type="editorial" data-href="vamonos-de-compras.html"><strong>¡Vámonos de compras!</strong> editorial design</button></li>
@@ -236,8 +237,40 @@
       }
     }
 
+    function updateGalleryPosterEffects() {
+      const galleryRect = primaryPreview.getBoundingClientRect();
+      const galleryCenter = galleryRect.top + galleryRect.height / 2;
+      const fadeDistance = Math.max(galleryRect.height * .9, 1);
+      let centerImage = null;
+      let centerDistance = Infinity;
+
+      mobileGalleryImages.forEach(image => {
+        const rect = image.getBoundingClientRect();
+        const imageCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(imageCenter - galleryCenter);
+        const fadeProgress = Math.max(0, Math.min(1, distance / fadeDistance));
+        const visibility = Math.pow(1 - fadeProgress, 1.15) * .8;
+        const blur = Math.pow(fadeProgress, 1.35) * 16;
+        image.style.setProperty('--poster-opacity', visibility.toFixed(3));
+        image.style.setProperty('--poster-blur', `${blur.toFixed(2)}px`);
+
+        if (rect.bottom >= galleryRect.top && rect.top <= galleryRect.bottom && distance < centerDistance) {
+          centerDistance = distance;
+          centerImage = image;
+        }
+      });
+
+      mobileGalleryImages.forEach(image => {
+        image.classList.toggle('is-gallery-center', image === centerImage);
+      });
+    }
+
+    function openProject(href) {
+      window.location.href = href;
+    }
+
     function openGalleryProject(image) {
-      if (image.dataset.href) window.location.href = image.dataset.href;
+      if (image.dataset.href) openProject(image.dataset.href);
     }
 
     function setActiveGalleryProject(project) {
@@ -255,10 +288,14 @@
     mobileGalleryImages.forEach(image => {
       const projectButton = projectButtons.find(button => button.dataset.project === image.dataset.project);
       image.addEventListener('pointerenter', () => {
+        if (projectButton) projectButton.classList.add('is-gallery-hover');
         if (mobileCanHover.matches && projectButton) pinMobilePoster(projectButton);
-        if (!mobileLayout.matches && projectButton) pinDesktopPoster(projectButton);
+        if (!mobileLayout.matches && projectButton) {
+          pinDesktopPoster(projectButton);
+        }
       });
       image.addEventListener('pointerleave', () => {
+        if (projectButton) projectButton.classList.remove('is-gallery-hover');
         if (mobileCanHover.matches && pinnedMobileProject === projectButton) {
           pinnedMobileProject = null;
           pinnedMobileOffset = null;
@@ -308,6 +345,7 @@
           }
           primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
           updateGalleryEdgeColors();
+          updateGalleryPosterEffects();
         }
       } else {
         const loopHeight = primaryPreviewSurface.scrollHeight / 2;
@@ -322,6 +360,7 @@
           }
           primaryPreviewSurface.style.transform = `translateY(${-desktopGalleryOffset}px)`;
           updateGalleryEdgeColors();
+          updateGalleryPosterEffects();
         }
       }
       requestAnimationFrame(animateMobileGallery);
@@ -371,10 +410,10 @@
       }
       if (button.dataset.href) {
         if (usesPointer || reduceMotion) {
-          window.location.href = button.dataset.href;
+          openProject(button.dataset.href);
         } else {
           setTimeout(() => {
-            window.location.href = button.dataset.href;
+            openProject(button.dataset.href);
           }, 260);
         }
       }
