@@ -495,10 +495,10 @@ html {
     bottom: auto;
     left: auto;
     order: 2;
-    width: 100%;
+    width: calc(100vw - (2 * var(--home-gutter)));
     min-height: 160px;
     height: min(calc(var(--layout-column) + var(--home-gutter)), 30vh);
-    margin-left: 0;
+    margin-left: calc(var(--home-gutter) - var(--index-axis));
     margin-top: clamp(28px, 4vw, 72px);
     overflow: hidden;
   }
