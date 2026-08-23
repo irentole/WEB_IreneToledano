@@ -114,6 +114,17 @@
     let previousGalleryTime = null;
     const mobileLayout = window.matchMedia('(max-width: 800px)');
     const mobileCanHover = window.matchMedia('(max-width: 800px) and (hover: hover) and (pointer: fine)');
+    const wideHorizontalGallery = window.matchMedia('(min-width: 1400px)');
+
+    function galleryUsesHorizontalTrack() {
+      return !mobileLayout.matches && wideHorizontalGallery.matches;
+    }
+
+    function galleryLoopLength() {
+      return (galleryUsesHorizontalTrack()
+        ? primaryPreviewSurface.scrollWidth
+        : primaryPreviewSurface.scrollHeight) / 2;
+    }
 
     [false, true].forEach(isDuplicate => {
       rotatingProjects.forEach(button => {
@@ -144,7 +155,7 @@
     }
 
     primaryPreview.addEventListener('wheel', event => {
-      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      const loopHeight = galleryLoopLength();
       if (loopHeight <= 0) return;
 
       event.preventDefault();
@@ -318,7 +329,7 @@
       const frameDuration = previousGalleryTime === null ? 0 : Math.min(40, time - previousGalleryTime);
       previousGalleryTime = time;
       if (mobileLayout.matches) {
-        const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+        const loopHeight = galleryLoopLength();
         if (loopHeight > 0) {
           const previousSmoothScroll = smoothMobileScroll;
           smoothMobileScroll += (window.scrollY - smoothMobileScroll) * .075;
@@ -335,7 +346,7 @@
           updateGalleryPosterEffects();
         }
       } else {
-        const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+        const loopHeight = galleryLoopLength();
         if (loopHeight > 0) {
           if (pinnedDesktopOffset !== null) {
             let distance = (pinnedDesktopOffset - desktopGalleryOffset) % loopHeight;
@@ -345,7 +356,9 @@
           } else {
             desktopGalleryOffset = (desktopGalleryOffset + frameDuration * .024) % loopHeight;
           }
-          primaryPreviewSurface.style.transform = `translateY(${-desktopGalleryOffset}px)`;
+          primaryPreviewSurface.style.transform = galleryUsesHorizontalTrack()
+            ? `translateX(${-desktopGalleryOffset}px)`
+            : `translateY(${-desktopGalleryOffset}px)`;
           updateGalleryEdgeColors();
           updateGalleryPosterEffects();
         }
@@ -356,7 +369,7 @@
     function pinMobilePoster(button) {
       const image = mobileGalleryImages.find(item => item.dataset.project === button.dataset.project);
       if (!image) return false;
-      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      const loopHeight = galleryLoopLength();
       if (loopHeight <= 0 || image.offsetHeight <= 0) return false;
       pinnedMobileProject = button;
       pinnedMobileOffset = ((image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2) % loopHeight + loopHeight) % loopHeight;
@@ -367,10 +380,13 @@
     function pinDesktopPoster(button) {
       const image = mobileGalleryImages.find(item => item.dataset.project === button.dataset.project);
       if (!image) return false;
-      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
+      const loopHeight = galleryLoopLength();
       if (loopHeight <= 0 || image.offsetHeight <= 0) return false;
       pinnedDesktopProject = button;
-      pinnedDesktopOffset = ((image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2) % loopHeight + loopHeight) % loopHeight;
+      const imageCenter = galleryUsesHorizontalTrack()
+        ? image.offsetLeft + image.offsetWidth / 2 - primaryPreview.clientWidth / 2
+        : image.offsetTop + image.offsetHeight / 2 - primaryPreview.clientHeight / 2;
+      pinnedDesktopOffset = ((imageCenter % loopHeight) + loopHeight) % loopHeight;
       setActiveGalleryProject(button.dataset.project);
       return true;
     }
