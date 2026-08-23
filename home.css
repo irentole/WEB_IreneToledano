@@ -689,6 +689,10 @@ html {
     box-shadow: 0 8px 22px rgba(0,0,0,.14);
   }
 
+  .mobile-gallery__image[data-project="¡Vámonos de compras!"] {
+    object-fit: contain;
+  }
+
   .mobile-gallery__image[data-href] {
     cursor: var(--plus-cursor-large);
   }
