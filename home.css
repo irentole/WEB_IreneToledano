@@ -475,6 +475,33 @@ html {
   }
 }
 
+@media (min-width: 1400px) {
+  .portfolio-composition {
+    display: flex;
+    width: calc((4 * var(--layout-column)) + (3 * var(--home-gutter)));
+    flex-direction: column;
+  }
+
+  .project-menu {
+    order: 1;
+    width: var(--home-column);
+  }
+
+  .project-preview--top {
+    position: relative;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    order: 2;
+    width: 100%;
+    height: clamp(180px, 25vh, 320px);
+    margin-top: clamp(28px, 4vw, 72px);
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 800px) {
   html {
     scroll-snap-type: none;
