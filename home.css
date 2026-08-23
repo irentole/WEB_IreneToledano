@@ -499,7 +499,7 @@ html {
     min-height: 160px;
     height: min(calc(var(--layout-column) + var(--home-gutter)), 30vh);
     margin-left: calc(var(--home-gutter) - var(--index-axis));
-    margin-top: clamp(28px, 4vw, 72px);
+    margin-top: clamp(10px, 1.5vw, 24px);
     overflow: hidden;
   }
 

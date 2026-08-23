@@ -683,6 +683,14 @@ html { scroll-behavior: smooth; }
     mask-image: none;
   }
 
+  .project-page--subtexture .project-gallery__cover--mobile {
+    width: auto !important;
+    max-width: calc(100% - (2 * var(--project-side)));
+    max-height: calc(100svh - 120px);
+    margin-inline: auto !important;
+    object-fit: contain;
+  }
+
   .project-page--dpata .project-gallery__poster {
     width: auto !important;
     max-width: 100%;

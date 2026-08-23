@@ -244,19 +244,29 @@
 
     function updateGalleryPosterEffects() {
       const galleryRect = primaryPreview.getBoundingClientRect();
-      const galleryCenter = galleryRect.top + galleryRect.height / 2;
-      const fadeDistance = Math.max(galleryRect.height * .58, 1);
+      const horizontalTrack = galleryUsesHorizontalTrack();
+      const galleryCenter = horizontalTrack
+        ? galleryRect.left + galleryRect.width / 2
+        : galleryRect.top + galleryRect.height / 2;
+      const fadeDistance = Math.max((horizontalTrack ? galleryRect.width : galleryRect.height) * .58, 1);
       let centerImage = null;
       let centerDistance = Infinity;
 
       mobileGalleryImages.forEach(image => {
         const rect = image.getBoundingClientRect();
-        const imageCenter = rect.top + rect.height / 2;
+        const imageCenter = horizontalTrack
+          ? rect.left + rect.width / 2
+          : rect.top + rect.height / 2;
         const distance = Math.abs(imageCenter - galleryCenter);
-        const visibility = Math.pow(Math.max(0, Math.min(1, 1 - distance / fadeDistance)), 1.65) * .8;
+        const proximity = Math.max(0, Math.min(1, 1 - distance / fadeDistance));
+        const visibility = Math.pow(proximity, 1.65) * .8;
         image.style.setProperty('--poster-opacity', visibility.toFixed(3));
+        image.style.setProperty('--poster-blur', `${((1 - proximity) * 2.4).toFixed(2)}px`);
 
-        if (rect.bottom >= galleryRect.top && rect.top <= galleryRect.bottom && distance < centerDistance) {
+        const isVisible = horizontalTrack
+          ? rect.right >= galleryRect.left && rect.left <= galleryRect.right
+          : rect.bottom >= galleryRect.top && rect.top <= galleryRect.bottom;
+        if (isVisible && distance < centerDistance) {
           centerDistance = distance;
           centerImage = image;
         }
