@@ -399,7 +399,7 @@
       });
       previews.forEach(preview => preview.dataset.project = button.dataset.project);
       if (mobileLayout.matches && projectPreviewImages[button.dataset.project]) {
-        if (pinnedMobileProject !== button && pinMobilePoster(button)) return;
+        pinMobilePoster(button);
       }
       if (button.dataset.href) {
         if (usesPointer || reduceMotion) {
