@@ -37,7 +37,7 @@
         <li class="project-menu__indent"><button data-project="MHT chairs" data-type="object" data-href="Sillas.html"><strong>MHT chairs</strong> object design + photography + graphic design</button></li>
         <li class="project-menu__indent"><button data-project="D PATA NEGRA" data-type="photography" data-href="d-pata-negra.html"><strong>D PATA NEGRA</strong> photography + art</button></li>
         <li class="project-menu__indent"><button data-project="Mundo fluctuante" data-type="concept" data-href="fluctuating.html"><strong>Mundo fluctuante</strong> concept design + graphic design</button></li>
-        <li class="project-menu__indent"><button data-project="FOOD JEWELS" data-type="object" data-href="PDF_DO/FOODJEWELS.pdf"><strong>FOOD JEWELS</strong> object design + art direction + photography</button></li>
+        <li class="project-menu__indent"><button data-project="FOOD JEWELS" data-type="object" data-href="food-jewels.html"><strong>FOOD JEWELS</strong> object design + art direction + photography</button></li>
         <li class="project-menu__indent"><button data-project="linked" data-type="photography"><strong>linked</strong> photography</button></li>
         <li class="project-menu__indent"><button data-project="Cuando el Sol perdió a la Luna" data-type="art"><strong>Cuando el Sol perdió a la Luna</strong> art + photography</button></li>
         <li class="project-menu__indent"><button data-project="McRib" data-type="art" data-href="mcrib.html"><strong>McRib</strong> art</button></li>
@@ -72,9 +72,8 @@
       '¡Vámonos de compras!': 'Content/vamonos-de-compras/POSTER.png',
       'Australian Artistic Swimming Championship 2023': 'Content/Australian Artistic Swimming Championship 2023/POSTER.jpg',
       'Basel Aquatics': 'Content/Basel Aquatics/LOGO 1.png',
-      'D PATA NEGRA': 'Content/D Pata Negra/POSTER D Pata.png',
-      'MHT chairs': 'Content/MHT chairs/POSTER MHT.png',
-      'Mundo fluctuante': 'Content/MUNDO FLUCTUANTE/POSTER FLUCTUATING.png',
+      'D PATA NEGRA': 'Content/D Pata Negra/POSTER D Pata.png',      'Mundo fluctuante': 'Content/MUNDO FLUCTUANTE/POSTER FLUCTUATING.png',
+      'FOOD JEWELS': 'Content/FOOD JEWELS/POSTER.jpg',
       'Ortiz': 'Content/Ortiz/POSTER ORTIZ.jpg',
       'McRib': 'Content/McRib/poster McRib.jpg',
       'girls talk': 'Content/girls talk/POSTER.png',
@@ -88,6 +87,7 @@
       'D PATA NEGRA': '#c9342f',
       'MHT chairs': '#303537',
       'Mundo fluctuante': '#7958a7',
+      'FOOD JEWELS': '#9b7955',
       'Ortiz': '#d08a42',
       'McRib': '#d84a28',
       'girls talk': '#e88cae',
@@ -110,6 +110,7 @@
     let hoveredProject = null;
     let focusedProject = null;
     let previewRotationTimer;
+    let smoothMobileScroll = window.scrollY;
     let mobileGalleryOffset = 0;
     let desktopGalleryOffset = 0;
     let pinnedMobileProject = null;
@@ -117,11 +118,6 @@
     let pinnedDesktopProject = null;
     let pinnedDesktopOffset = null;
     let previousGalleryTime = null;
-    let galleryDragPointer = null;
-    let galleryDragStartY = 0;
-    let galleryDragStartOffset = 0;
-    let galleryDragMoved = false;
-    let suppressGalleryClickUntil = 0;
     const mobileLayout = window.matchMedia('(max-width: 800px)');
     const mobileCanHover = window.matchMedia('(max-width: 800px) and (hover: hover) and (pointer: fine)');
 
@@ -174,39 +170,6 @@
         desktopGalleryOffset = (desktopGalleryOffset + gestureDelta + loopHeight) % loopHeight;
       }
     }, { passive: false });
-
-    primaryPreview.addEventListener('pointerdown', event => {
-      if (!mobileLayout.matches || event.pointerType !== 'touch') return;
-      galleryDragPointer = event.pointerId;
-      galleryDragStartY = event.clientY;
-      galleryDragStartOffset = mobileGalleryOffset;
-      galleryDragMoved = false;
-      releasePinnedGalleryProject();
-      primaryPreview.setPointerCapture(event.pointerId);
-    });
-
-    primaryPreview.addEventListener('pointermove', event => {
-      if (event.pointerId !== galleryDragPointer) return;
-      const loopHeight = primaryPreviewSurface.scrollHeight / 2;
-      if (loopHeight <= 0) return;
-      const dragDistance = galleryDragStartY - event.clientY;
-      if (Math.abs(dragDistance) > 6) galleryDragMoved = true;
-      mobileGalleryOffset = (galleryDragStartOffset + dragDistance + loopHeight) % loopHeight;
-      primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
-      updateGalleryEdgeColors();
-      updateGalleryPosterEffects();
-      event.preventDefault();
-    }, { passive: false });
-
-    function finishGalleryDrag(event) {
-      if (event.pointerId !== galleryDragPointer) return;
-      if (galleryDragMoved) suppressGalleryClickUntil = performance.now() + 350;
-      galleryDragPointer = null;
-      galleryDragMoved = false;
-    }
-
-    primaryPreview.addEventListener('pointerup', finishGalleryDrag);
-    primaryPreview.addEventListener('pointercancel', finishGalleryDrag);
 
     function extractPosterColor(image) {
       try {
@@ -277,7 +240,7 @@
     function updateGalleryPosterEffects() {
       const galleryRect = primaryPreview.getBoundingClientRect();
       const galleryCenter = galleryRect.top + galleryRect.height / 2;
-      const fadeDistance = Math.max(galleryRect.height * .9, 1);
+      const fadeDistance = Math.max(galleryRect.height * .58, 1);
       let centerImage = null;
       let centerDistance = Infinity;
 
@@ -285,11 +248,8 @@
         const rect = image.getBoundingClientRect();
         const imageCenter = rect.top + rect.height / 2;
         const distance = Math.abs(imageCenter - galleryCenter);
-        const fadeProgress = Math.max(0, Math.min(1, distance / fadeDistance));
-        const visibility = Math.pow(1 - fadeProgress, 1.15) * .8;
-        const blur = Math.pow(fadeProgress, 1.35) * 16;
+        const visibility = Math.pow(Math.max(0, Math.min(1, 1 - distance / fadeDistance)), 1.65) * .8;
         image.style.setProperty('--poster-opacity', visibility.toFixed(3));
-        image.style.setProperty('--poster-blur', `${blur.toFixed(2)}px`);
 
         if (rect.bottom >= galleryRect.top && rect.top <= galleryRect.bottom && distance < centerDistance) {
           centerDistance = distance;
@@ -325,14 +285,10 @@
     mobileGalleryImages.forEach(image => {
       const projectButton = projectButtons.find(button => button.dataset.project === image.dataset.project);
       image.addEventListener('pointerenter', () => {
-        if (projectButton) projectButton.classList.add('is-gallery-hover');
         if (mobileCanHover.matches && projectButton) pinMobilePoster(projectButton);
-        if (!mobileLayout.matches && projectButton) {
-          pinDesktopPoster(projectButton);
-        }
+        if (!mobileLayout.matches && projectButton) pinDesktopPoster(projectButton);
       });
       image.addEventListener('pointerleave', () => {
-        if (projectButton) projectButton.classList.remove('is-gallery-hover');
         if (mobileCanHover.matches && pinnedMobileProject === projectButton) {
           pinnedMobileProject = null;
           pinnedMobileOffset = null;
@@ -344,11 +300,7 @@
           clearActiveGalleryProject();
         }
       });
-      image.addEventListener('click', () => {
-        if (performance.now() < suppressGalleryClickUntil) return;
-        if (projectButton) selectProject(projectButton);
-        else openGalleryProject(image);
-      });
+      image.addEventListener('click', () => openGalleryProject(image));
       image.addEventListener('keydown', event => {
         if (event.key === 'Enter') openGalleryProject(image);
       });
@@ -374,13 +326,15 @@
       if (mobileLayout.matches) {
         const loopHeight = primaryPreviewSurface.scrollHeight / 2;
         if (loopHeight > 0) {
+          const previousSmoothScroll = smoothMobileScroll;
+          smoothMobileScroll += (window.scrollY - smoothMobileScroll) * .075;
           if (pinnedMobileOffset !== null) {
             let distance = (pinnedMobileOffset - mobileGalleryOffset) % loopHeight;
             if (distance > loopHeight / 2) distance -= loopHeight;
             if (distance < -loopHeight / 2) distance += loopHeight;
             mobileGalleryOffset = (mobileGalleryOffset + distance * .09 + loopHeight) % loopHeight;
-          } else if (galleryDragPointer === null) {
-            mobileGalleryOffset = (mobileGalleryOffset + frameDuration * .024 + loopHeight) % loopHeight;
+          } else {
+            mobileGalleryOffset = (mobileGalleryOffset + frameDuration * .024 + (smoothMobileScroll - previousSmoothScroll) * 1.35 + loopHeight) % loopHeight;
           }
           primaryPreviewSurface.style.transform = `translateY(${-mobileGalleryOffset}px)`;
           updateGalleryEdgeColors();
@@ -445,7 +399,7 @@
       });
       previews.forEach(preview => preview.dataset.project = button.dataset.project);
       if (mobileLayout.matches && projectPreviewImages[button.dataset.project]) {
-        if (pinnedMobileProject !== button) pinMobilePoster(button);
+        if (pinnedMobileProject !== button && pinMobilePoster(button)) return;
       }
       if (button.dataset.href) {
         if (usesPointer || reduceMotion) {
@@ -500,7 +454,6 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const usesPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const projectMenu = document.querySelector('.project-menu');
-    const indexScroller = document.querySelector('.portfolio-composition');
     const menuItems = projectButtons.map(button => ({
       button,
       row: button.closest('li'),
@@ -579,19 +532,20 @@
         }, { passive: true });
       }
 
-      function handleIndexScroll() {
-        const currentY = mobileLayout.matches ? indexScroller.scrollTop : window.scrollY;
-        const delta = currentY - previousY;
-        previousY = currentY;
+      window.addEventListener('scroll', () => {
+        const delta = window.scrollY - previousY;
+        previousY = window.scrollY;
         windTarget = Math.max(-1, Math.min(1, delta / 20));
         if (mobileLayout.matches) {
-          if (delta < -1 && currentY > 10) homeName.classList.add('is-hidden');
-          if (delta > 1 || currentY <= 2) homeName.classList.remove('is-hidden');
+          if (delta < -1 && window.scrollY > 10) homeName.classList.add('is-hidden');
+          if (delta > 1 || window.scrollY <= 2) homeName.classList.remove('is-hidden');
         }
-      }
-
-      window.addEventListener('scroll', handleIndexScroll, { passive: true });
-      indexScroller.addEventListener('scroll', handleIndexScroll, { passive: true });
+        if (mobileLayout.matches && Math.abs(delta) > 1) {
+          pinnedMobileProject = null;
+          pinnedMobileOffset = null;
+          clearActiveGalleryProject();
+        }
+      }, { passive: true });
       animationFrame = requestAnimationFrame(renderIndexMotion);
       requestAnimationFrame(animateMobileGallery);
     }

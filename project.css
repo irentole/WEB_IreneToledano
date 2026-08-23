@@ -402,6 +402,17 @@ html { scroll-behavior: smooth; }
   object-fit: cover;
 }
 
+@media (min-width: 761px) {
+  .project-overview h1 { font-size: 15px; }
+  .project-overview__category,
+  .project-overview__year { font-size: 13px; }
+  .project-overview__description { font-size: 12px; }
+  .project-gallery__label,
+  .project-feature figcaption,
+  .basel-piece__title,
+  .basel-piece figcaption { font-size: 11px; }
+}
+
 @media (max-width: 760px) {
   :root {
     --grid-left: 10px;
@@ -551,15 +562,39 @@ html { scroll-behavior: smooth; }
   margin-inline: var(--project-side) !important;
 }
 
-.project-page--fluctuating .project-gallery:not(.project-gallery--opening) {
-  width: calc(100% - (2 * var(--project-side)));
-  margin-inline: var(--project-side);
+.project-page--food-jewels .project-overview {
+  min-height: 0;
+  padding-bottom: 32px;
+}
+
+.project-page--food-jewels .project-gallery--food-jewels {
   gap: 20px;
 }
 
+.project-page--food-jewels .project-gallery--food-jewels img {
+  width: min(44vw, 620px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--fluctuating .project-gallery:not(.project-gallery--opening) {
+  width: min(48vw, 680px);
+  margin-inline: auto;
+  gap: 0;
+}
+
 .project-page--fluctuating .project-gallery:not(.project-gallery--opening) > img {
+  display: block;
   width: 100% !important;
   margin: 0 !important;
+}
+
+.project-page--fluctuating .project-gallery:not(.project-gallery--opening) > img + img,
+.project-page--fluctuating .project-gallery:not(.project-gallery--opening) > img + .project-feature,
+.project-page--fluctuating .project-gallery:not(.project-gallery--opening) > .project-feature + img {
+  margin-top: -1px !important;
 }
 
 .project-page--fluctuating .project-feature:not(.is-expanded) {
@@ -570,6 +605,10 @@ html { scroll-behavior: smooth; }
 .project-page--fluctuating .project-feature:not(.is-expanded) .project-feature__button,
 .project-page--fluctuating .project-feature:not(.is-expanded) figcaption {
   width: 100%;
+}
+
+.project-page--fluctuating .project-feature:not(.is-expanded) figcaption {
+  display: none;
 }
 
 .project-page--ortiz .project-gallery:not(.project-gallery--opening),
@@ -589,8 +628,14 @@ html { scroll-behavior: smooth; }
   .project-page--subtexture .project-gallery,
   .project-page--vamonos .project-gallery,
   .project-page--mht .project-gallery,
+  .project-page--food-jewels .project-gallery,
   .project-page--fluctuating .project-gallery {
     padding-inline: 0;
+  }
+
+  .project-page--fluctuating .project-gallery:not(.project-gallery--opening) {
+    width: min(82vw, 560px);
+    margin-inline: auto;
   }
 
   .project-page--ortiz .project-gallery:not(.project-gallery--opening),
@@ -602,6 +647,10 @@ html { scroll-behavior: smooth; }
   .project-page--mcrib .project-gallery:not(.project-gallery--opening) img {
     width: calc(100% - (2 * var(--project-side))) !important;
     margin-inline: var(--project-side) !important;
+  }
+
+  .project-page--food-jewels .project-gallery--food-jewels img {
+    width: min(82vw, 560px) !important;
   }
 
   .project-page--dpata .project-gallery__poster {
