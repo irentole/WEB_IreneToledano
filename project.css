@@ -613,7 +613,7 @@ html { scroll-behavior: smooth; }
 }
 
 .project-page--sol-luna .project-gallery img {
-  width: min(72vw, 1120px) !important;
+  width: min(calc(var(--grid-end) - var(--grid-start)), 620px) !important;
   margin-inline: auto !important;
   filter: none;
   -webkit-mask-image: none;
@@ -626,7 +626,7 @@ html { scroll-behavior: smooth; }
 }
 
 .project-page--aswa-logo .project-gallery img {
-  width: min(76vw, 1240px) !important;
+  width: min(36vw, 580px) !important;
   margin-inline: auto !important;
   filter: none;
   -webkit-mask-image: none;
