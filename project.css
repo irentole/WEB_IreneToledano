@@ -215,7 +215,7 @@ html { scroll-behavior: smooth; }
 
 .project-gallery__poster {
   width: min(calc(var(--grid-end) - var(--grid-start)), 370px) !important;
-  margin-left: var(--grid-start) !important;
+  margin-inline: auto !important;
 }
 
 .project-gallery__cover {
