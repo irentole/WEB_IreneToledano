@@ -415,6 +415,11 @@
     projectButtons.forEach(button => {
       button.setAttribute('aria-pressed', 'false');
       button.addEventListener('click', () => selectProject(button));
+      button.addEventListener('touchend', event => {
+        if (!mobileLayout.matches) return;
+        event.preventDefault();
+        selectProject(button);
+      }, { passive: false });
       button.addEventListener('pointerenter', () => {
         hoveredProject = button;
         if (mobileCanHover.matches && projectPreviewImages[button.dataset.project]) {

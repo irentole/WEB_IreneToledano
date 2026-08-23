@@ -269,6 +269,7 @@ html {
   letter-spacing: 0;
   text-align: left;
   cursor: var(--plus-cursor-large);
+  touch-action: manipulation;
   transform: translateX(var(--wind)) skewX(var(--wind-skew)) skewX(var(--interaction-skew, 0deg)) scale(var(--hover-scale, 1)) scaleX(var(--item-width, 1)) scaleY(var(--item-stretch, 1.2));
   transform-origin: left center;
   transition: --hover-scale .12s ease-out, padding .15s ease-out, color .12s ease-out, font-weight .12s ease-out;
@@ -465,8 +466,9 @@ html {
   }
 
   .mobile-gallery__image[data-href] {
-    cursor: var(--plus-cursor-large);
-  }
+  cursor: var(--plus-cursor-large);
+  touch-action: manipulation;
+}
 
   .project-menu {
     margin-top: 14px;
