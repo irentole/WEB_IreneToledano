@@ -603,6 +603,36 @@ html { scroll-behavior: smooth; }
   mask-image: none;
 }
 
+.project-page--sol-luna .project-overview {
+  min-height: 0;
+  padding-bottom: 32px;
+}
+
+.project-page--sol-luna .project-gallery {
+  gap: 20px;
+}
+
+.project-page--sol-luna .project-gallery img {
+  width: min(72vw, 1120px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--aswa-logo .project-overview {
+  min-height: 0;
+  padding-bottom: 32px;
+}
+
+.project-page--aswa-logo .project-gallery img {
+  width: min(76vw, 1240px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 .project-page--fluctuating .project-gallery:not(.project-gallery--opening) {
   width: min(48vw, 680px);
   margin-inline: auto;
@@ -653,6 +683,8 @@ html { scroll-behavior: smooth; }
   .project-page--vamonos .project-gallery,
   .project-page--mht .project-gallery,
   .project-page--food-jewels .project-gallery,
+  .project-page--sol-luna .project-gallery,
+  .project-page--aswa-logo .project-gallery,
   .project-page--fluctuating .project-gallery {
     padding-inline: 0;
   }
@@ -675,6 +707,14 @@ html { scroll-behavior: smooth; }
 
   .project-page--food-jewels .project-gallery--food-jewels img {
     width: min(82vw, 560px) !important;
+  }
+
+  .project-page--sol-luna .project-gallery img {
+    width: calc(100% - (2 * var(--project-side))) !important;
+  }
+
+  .project-page--aswa-logo .project-gallery img {
+    width: calc(100% - (2 * var(--project-side))) !important;
   }
 
   .project-page--subtexture .project-gallery img,
