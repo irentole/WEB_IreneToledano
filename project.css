@@ -318,6 +318,8 @@ html { scroll-behavior: smooth; }
   width: min(86vw, 1320px) !important;
 }
 
+.project-gallery__cover--mobile { display: none !important; }
+
 .project-page--basel .project-overview {
   min-height: 0;
   padding-bottom: 52px;
@@ -482,6 +484,16 @@ html { scroll-behavior: smooth; }
 
   .project-page--subtexture .project-gallery__cover {
     width: 96% !important;
+  }
+
+  .project-page--subtexture .project-gallery__cover--spread {
+    display: none !important;
+  }
+
+  .project-page--subtexture .project-gallery__cover--mobile {
+    display: block !important;
+    width: min(82vw, 560px) !important;
+    margin-inline: auto !important;
   }
 
   .project-page--basel .project-overview { padding-bottom: 24px; }
