@@ -27,11 +27,13 @@
         <li><button data-project="SubTexture" data-type="editorial" data-href="subtexture.html"><strong>SubTexture</strong> editorial design</button></li>
         <li><button data-project="¡Vámonos de compras!" data-type="editorial" data-href="vamonos-de-compras.html"><strong>¡Vámonos de compras!</strong> editorial design</button></li>
         <li><button data-project="Artistic Swimming WA" data-type="identity" data-href="australian-artistic-swimming-championship-2023.html"><strong>Australian Artistic Swimming Championship 2023</strong> visual identity</button></li>
+        <li><button data-project="WA States" data-type="identity" data-href="wa-states.html"><strong>WA States</strong> visual identity</button></li>
+        <li><button data-project="SYNCHRO WA" data-type="identity" data-href="synchro-wa.html"><strong>SYNCHRO WA</strong> printing process + graphic design + illustration</button></li>
         <li><button data-project="Logo Artistic Swimming WA" data-type="identity" data-href="logo-artistic-swimming-wa.html"><strong>Logo Artistic Swimming WA</strong> visual identity</button></li>
         <li><button data-project="Basel Aquatics" data-type="identity" data-href="basel-aquatics.html"><strong>Basel Aquatics</strong> visual identity</button></li>
-        <li><button data-project="Así se asa" data-type="identity"><strong>así se asa</strong> visual identity</button></li>
+        <li><button data-project="Así se asa" data-type="identity" data-href="asi-se-asa.html"><strong>así se asa</strong> visual identity</button></li>
         <li><button data-project="Chipén" data-type="identity" data-href="chipen.html"><strong>Chipén</strong> visual identity</button></li>
-        <li><button data-project="Lady Chollo" data-type="illustration"><strong>Lady Chollo</strong> illustration</button></li>
+        <li><button data-project="Lady Chollo" data-type="illustration" data-href="lady-chollo.html"><strong>Lady Chollo</strong> illustration</button></li>
         <li><button data-project="El cocodrilo" data-type="editorial" data-href="el-cocodrilo.html"><strong>El cocodrilo</strong> editorial design + graphic design + illustration</button></li>
         <li class="project-menu__indent"><button data-project="MHT chairs" data-type="object" data-href="Sillas.html"><strong>MHT chairs</strong> object design + photography + graphic design</button></li>
         <li class="project-menu__indent"><button data-project="D PATA NEGRA" data-type="photography" data-href="d-pata-negra.html"><strong>D PATA NEGRA</strong> photography + art</button></li>
@@ -40,7 +42,6 @@
         <li class="project-menu__indent"><button data-project="Cuando el Sol perdió a la Luna" data-type="art" data-href="cuando-el-sol-perdio-a-la-luna.html"><strong>Cuando el Sol perdió a la Luna</strong> cinematography + set design</button></li>
         <li class="project-menu__indent"><button data-project="McRib" data-type="art" data-href="mcrib.html"><strong>McRib</strong> art</button></li>
         <li class="project-menu__indent"><button data-project="Ortiz" data-type="art" data-href="ortiz.html"><strong>Ortiz</strong> art</button></li>
-        <li class="project-menu__indent"><button data-project="BioPark" data-type="storyboard"><strong>BioPark</strong> storyboard</button></li>
         <li><button data-project="girls talk" data-type="painting" data-href="girls-talk.html"><strong>girls talk</strong> painting, acrylic on canvas</button></li>
         <li><button data-project="after party" data-type="painting"><strong>after party</strong> painting, acrylic on canvas</button></li>
         <li><button data-project="Thoughts and Emotions" data-type="painting" data-href="thoughts-and-emotions.html"><strong>Thoughts and Emotions</strong> print, acrylic on cardboard</button></li>
@@ -65,12 +66,16 @@
       'SubTexture': 'Content/SubTexture/web/POSTER.jpg',
       '¡Vámonos de compras!': 'Content/vamonos-de-compras/web/POSTER.png',
       'Artistic Swimming WA': 'Content/Australian Artistic Swimming Championship 2023/POSTER.jpg',
+      'WA States': 'Content/previews/1%20poster.jpg',
+      'SYNCHRO WA': 'Content/previews/synchro-wa-1.jpg',
       'Logo Artistic Swimming WA': 'Content/Logo Artistic Swimming WA/ASWA logo white.jpg',
       'Basel Aquatics': 'Content/Basel Aquatics/LOGO 1.png',
-      'Chipén': 'Content/chipen/chipen-pack-final.png',
-      'El cocodrilo': 'Content/El%20Cocodrilo/portada_Elcocodrilo.jpg',
-      'MHT chairs': 'Content/MHT%20chairs/POSTER%20MHT.png',
-      'D PATA NEGRA': 'Content/D Pata Negra/POSTER D Pata.png',      'Mundo fluctuante': 'Content/MUNDO FLUCTUANTE/web/POSTER FLUCTUATING.jpg',
+      'Así se asa': 'Content/asi-se-asa/asi-se-asa.png',
+      'Lady Chollo': 'Content/previews/ahorramas.jpg',
+      'Chipén': 'Content/previews/chipen-pack-final.jpg',
+      'El cocodrilo': 'Content/previews/portada_Elcocodrilo.jpg',
+      'MHT chairs': 'Content/previews/POSTER%20MHT.jpg',
+      'D PATA NEGRA': 'Content/previews/POSTER%20D%20Pata.jpg',      'Mundo fluctuante': 'Content/MUNDO FLUCTUANTE/web/POSTER FLUCTUATING.jpg',
       'FOOD JEWELS': 'Content/FOOD JEWELS/web/POSTER.jpg',
       'Cuando el Sol perdió a la Luna': 'Content/cuando-el-sol-perdio-a-la-luna/WhatsApp%20Image%202026-07-21%20at%2014.30.46.jpeg',
       'Ortiz': 'Content/Ortiz/POSTER ORTIZ.jpg',
@@ -82,8 +87,12 @@
       'SubTexture': '#167f9b',
       '¡Vámonos de compras!': '#72d2ee',
       'Artistic Swimming WA': '#069b89',
+      'WA States': '#6c82a8',
+      'SYNCHRO WA': '#466e9b',
       'Logo Artistic Swimming WA': '#e4e4e4',
       'Basel Aquatics': '#171717',
+      'Así se asa': '#ae3024',
+      'Lady Chollo': '#f9cb52',
       'Chipén': '#e7be84',
       'El cocodrilo': '#beb5a7',
       'D PATA NEGRA': '#c9342f',
@@ -142,6 +151,9 @@
         image.dataset.project = button.dataset.project;
         image.dataset.dominantColor = projectPosterColors[button.dataset.project] || '#b8b8b8';
         if (button.dataset.href) image.dataset.href = button.dataset.href;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.fetchPriority = 'low';
         image.src = projectPreviewImages[button.dataset.project];
         image.alt = isDuplicate ? '' : `Poster de ${button.dataset.project}`;
         if (isDuplicate) {

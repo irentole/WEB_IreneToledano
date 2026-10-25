@@ -627,6 +627,61 @@ html { scroll-behavior: smooth; }
   mask-image: none;
 }
 
+.project-page--wa-states .project-gallery {
+  gap: clamp(32px, 6vw, 80px);
+}
+
+.project-page--wa-states .project-gallery img {
+  width: min(70vw, 980px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--wa-states .project-gallery--wa-states-posters img {
+  width: min(35vw, 490px) !important;
+}
+
+.project-page--wa-states .project-gallery--wa-states-posters {
+  gap: 0;
+}
+
+.project-page--wa-states .project-gallery--wa-states-applications {
+  display: grid;
+  width: min(86vw, 1180px);
+  margin-inline: auto;
+  padding: clamp(20px, 3vw, 48px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 28px);
+  background: #fff;
+}
+
+.project-page--wa-states .project-gallery--wa-states-applications img {
+  width: 100% !important;
+  margin: 0 !important;
+  object-fit: contain;
+}
+
+.project-page--asi-se-asa .project-gallery--asi-se-asa img {
+  width: min(86vw, 1260px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--synchro-wa .project-gallery img {
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--synchro-wa .project-gallery:not(.project-gallery--opening) img {
+  width: min(70vw, 980px) !important;
+  margin-inline: auto !important;
+}
+
 .project-page--cocodrilo .project-gallery:not(.project-gallery--opening) {
   gap: clamp(32px, 6vw, 80px);
 }
@@ -759,6 +814,38 @@ html { scroll-behavior: smooth; }
   }
 
   .project-page--chipen .project-gallery img {
+    width: calc(100% - 20px) !important;
+    margin-inline: 10px !important;
+  }
+
+  .project-page--wa-states .project-gallery img {
+    width: calc(100% - 20px) !important;
+    margin-inline: 10px !important;
+  }
+
+  .project-page--wa-states .project-gallery--wa-states-posters img {
+    width: calc(50% - 10px) !important;
+    margin-inline: auto !important;
+  }
+
+  .project-page--wa-states .project-gallery--wa-states-applications {
+    width: calc(100% - 20px);
+    padding: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .project-page--wa-states .project-gallery--wa-states-applications img {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .project-page--asi-se-asa .project-gallery--asi-se-asa img {
+    width: calc(100% - 20px) !important;
+    margin-inline: 10px !important;
+  }
+
+  .project-page--synchro-wa .project-gallery:not(.project-gallery--opening) img {
     width: calc(100% - 20px) !important;
     margin-inline: 10px !important;
   }
