@@ -419,6 +419,13 @@ html { scroll-behavior: smooth; }
 }
 
 @media (max-width: 760px) {
+  .project-page--australian .project-overview { padding-bottom: 8px; }
+
+  .australian-poster-mockup {
+    min-height: 0;
+    padding: 8px 24px 48px;
+  }
+
   :root {
     --grid-left: 10px;
     --grid-start: 10px;
@@ -730,8 +737,8 @@ html { scroll-behavior: smooth; }
 
   .project-page--subtexture .project-gallery__cover--mobile {
     width: auto !important;
-    max-width: calc(100% - (2 * var(--project-side)));
-    max-height: calc(100svh - 120px);
+    max-width: min(68vw, 330px);
+    max-height: calc(100svh - 140px);
     margin-inline: auto !important;
     object-fit: contain;
   }

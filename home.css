@@ -589,7 +589,8 @@ html {
   }
 
   .portfolio-composition {
-    width: var(--mobile-column);
+    /* Keep the menu narrow, but give its scaled active title room to overflow. */
+    width: calc(100vw - var(--mobile-margin));
     height: 100vh;
     height: 100svh;
     min-height: 0;
@@ -697,7 +698,7 @@ html {
     cursor: var(--plus-cursor-large);
   }
   .project-menu {
-    width: 100%;
+    width: var(--mobile-column);
     margin-top: 14px;
   }
   .project-menu__title {
