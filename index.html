@@ -62,6 +62,7 @@
     const previews = [...document.querySelectorAll('.project-preview')];
     const primaryPreview = document.querySelector('.project-preview--top');
     const primaryPreviewSurface = primaryPreview.querySelector('.project-preview__surface');
+    const portfolioScroller = document.querySelector('.portfolio-composition');
     const projectPreviewImages = {
       'SubTexture': 'Content/SubTexture/web/POSTER.jpg',
       '¡Vámonos de compras!': 'Content/vamonos-de-compras/web/POSTER.png',
@@ -176,6 +177,12 @@
     }
 
     primaryPreview.addEventListener('wheel', event => {
+      if (mobileLayout.matches) {
+        event.preventDefault();
+        portfolioScroller.scrollTop += event.deltaY;
+        return;
+      }
+
       const loopHeight = galleryLoopLength();
       if (loopHeight <= 0) return;
 
@@ -190,12 +197,24 @@
           : 1;
       const gestureDelta = (Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX) * unit;
 
-      if (mobileLayout.matches) {
-        mobileGalleryOffset = (mobileGalleryOffset + gestureDelta + loopHeight) % loopHeight;
-      } else {
-        desktopGalleryOffset = (desktopGalleryOffset + gestureDelta + loopHeight) % loopHeight;
-      }
+      desktopGalleryOffset = (desktopGalleryOffset + gestureDelta + loopHeight) % loopHeight;
     }, { passive: false });
+
+    let previewTouchY = null;
+    primaryPreview.addEventListener('touchstart', event => {
+      if (!mobileLayout.matches) return;
+      previewTouchY = event.touches[0]?.clientY ?? null;
+    }, { passive: true });
+    primaryPreview.addEventListener('touchmove', event => {
+      if (!mobileLayout.matches || previewTouchY === null) return;
+      const currentY = event.touches[0]?.clientY;
+      if (currentY === undefined) return;
+      portfolioScroller.scrollTop += previewTouchY - currentY;
+      previewTouchY = currentY;
+      event.preventDefault();
+    }, { passive: false });
+    primaryPreview.addEventListener('touchend', () => { previewTouchY = null; }, { passive: true });
+    primaryPreview.addEventListener('touchcancel', () => { previewTouchY = null; }, { passive: true });
 
     function extractPosterColor(image) {
       try {
@@ -459,10 +478,26 @@
     }
 
     projectButtons.forEach(button => {
+      let touchStartY = null;
+      let touchHasMoved = false;
       button.setAttribute('aria-pressed', 'false');
       button.addEventListener('click', () => selectProject(button));
+      button.addEventListener('touchstart', event => {
+        if (!mobileLayout.matches) return;
+        touchStartY = event.touches[0]?.clientY ?? null;
+        touchHasMoved = false;
+      }, { passive: true });
+      button.addEventListener('touchmove', event => {
+        if (!mobileLayout.matches || touchStartY === null) return;
+        const currentY = event.touches[0]?.clientY;
+        if (currentY !== undefined && Math.abs(currentY - touchStartY) > 8) touchHasMoved = true;
+      }, { passive: true });
       button.addEventListener('touchend', event => {
         if (!mobileLayout.matches) return;
+        if (touchHasMoved) {
+          event.preventDefault();
+          return;
+        }
         event.preventDefault();
         selectProject(button);
       }, { passive: false });
