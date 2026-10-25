@@ -539,7 +539,7 @@ html {
   }
 
   :root {
-    --mobile-margin: 10px;
+    --mobile-margin: 18px;
     --mobile-gap: 10px;
     --mobile-column: calc((100vw - (2 * var(--mobile-margin)) - var(--mobile-gap)) / 2);
     --home-column: var(--mobile-column);
@@ -733,7 +733,7 @@ html {
   }
 
   /* Temporarily prioritise a full-width, scrollable index over the mobile gallery. */
-  .project-preview--top { display: none; }
+  .portfolio-home .project-preview--top { display: none !important; }
 
   .portfolio-composition {
     width: calc(100vw - (2 * var(--mobile-margin)));

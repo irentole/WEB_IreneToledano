@@ -145,27 +145,29 @@
         : primaryPreviewSurface.scrollHeight) / 2;
     }
 
-    [false, true].forEach(isDuplicate => {
-      rotatingProjects.forEach(button => {
-        const image = document.createElement('img');
-        image.className = 'mobile-gallery__image';
-        image.dataset.project = button.dataset.project;
-        image.dataset.dominantColor = projectPosterColors[button.dataset.project] || '#b8b8b8';
-        if (button.dataset.href) image.dataset.href = button.dataset.href;
-        image.loading = 'lazy';
-        image.decoding = 'async';
-        image.fetchPriority = 'low';
-        image.src = projectPreviewImages[button.dataset.project];
-        image.alt = isDuplicate ? '' : `Poster de ${button.dataset.project}`;
-        if (isDuplicate) {
-          image.setAttribute('aria-hidden', 'true');
-        } else if (button.dataset.href) {
-          image.setAttribute('role', 'link');
-          image.tabIndex = 0;
-        }
-        primaryPreviewSurface.appendChild(image);
+    if (!mobileLayout.matches) {
+      [false, true].forEach(isDuplicate => {
+        rotatingProjects.forEach(button => {
+          const image = document.createElement('img');
+          image.className = 'mobile-gallery__image';
+          image.dataset.project = button.dataset.project;
+          image.dataset.dominantColor = projectPosterColors[button.dataset.project] || '#b8b8b8';
+          if (button.dataset.href) image.dataset.href = button.dataset.href;
+          image.loading = 'lazy';
+          image.decoding = 'async';
+          image.fetchPriority = 'low';
+          image.src = projectPreviewImages[button.dataset.project];
+          image.alt = isDuplicate ? '' : `Poster de ${button.dataset.project}`;
+          if (isDuplicate) {
+            image.setAttribute('aria-hidden', 'true');
+          } else if (button.dataset.href) {
+            image.setAttribute('role', 'link');
+            image.tabIndex = 0;
+          }
+          primaryPreviewSurface.appendChild(image);
+        });
       });
-    });
+    }
     const mobileGalleryImages = [...primaryPreviewSurface.querySelectorAll('.mobile-gallery__image')];
 
     function releasePinnedGalleryProject() {
@@ -373,10 +375,10 @@
 
     function startPreviewRotation() {
       clearInterval(previewRotationTimer);
+      if (mobileLayout.matches) return;
       if (hoveredProject || focusedProject) return;
       primaryPreview.classList.remove('is-interactive');
       showNextProjectPreview();
-      if (mobileLayout.matches) return;
       previewRotationTimer = setInterval(showNextProjectPreview, 800);
     }
 
@@ -447,6 +449,7 @@
     }
 
     function showInteractivePreview() {
+      if (mobileLayout.matches) return;
       clearInterval(previewRotationTimer);
       const activeProject = hoveredProject || focusedProject;
       primaryPreview.classList.toggle('is-interactive', Boolean(activeProject));
