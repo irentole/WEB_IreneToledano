@@ -598,6 +598,11 @@ html { scroll-behavior: smooth; }
   margin-inline: var(--project-side) !important;
 }
 
+.project-page--mht .project-gallery:not(.project-gallery--opening) img.mht-catalogue-cover {
+  width: calc((100% - (2 * var(--project-side))) / 2) !important;
+  margin-inline: auto !important;
+}
+
 .project-page--food-jewels .project-overview {
   min-height: 0;
   padding-bottom: 32px;
@@ -791,6 +796,11 @@ html { scroll-behavior: smooth; }
   .project-page--aswa-logo .project-gallery,
   .project-page--fluctuating .project-gallery {
     padding-inline: 0;
+  }
+
+  .project-page--mht .project-gallery:not(.project-gallery--opening) img.mht-catalogue-cover {
+    width: calc((100% - 20px) / 2) !important;
+    margin-inline: auto !important;
   }
 
   .project-page--fluctuating .project-gallery:not(.project-gallery--opening) {

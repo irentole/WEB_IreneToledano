@@ -1,0 +1,34 @@
+.project-page--about .project-main {
+  min-height: 100vh;
+}
+
+.project-page--about .about-overview {
+  padding-bottom: 22px;
+}
+
+.project-page--about .project-overview__description p + p {
+  margin-top: 12px;
+}
+
+.project-page--about .about-portrait {
+  width: min(10vw, 140px);
+  margin: 16px 0 72px calc(var(--grid-middle) + var(--gutter));
+}
+
+.project-page--about .about-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: contrast(1.08) saturate(.84) brightness(.96);
+}
+
+@media (max-width: 760px) {
+  .project-page--about .about-overview {
+    padding-bottom: 14px;
+  }
+
+  .project-page--about .about-portrait {
+    width: min(28vw, 120px);
+    margin: 10px 10px 48px auto;
+  }
+}
