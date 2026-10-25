@@ -615,6 +615,43 @@ html { scroll-behavior: smooth; }
   mask-image: none;
 }
 
+.project-page--chipen .project-gallery {
+  gap: clamp(40px, 8vw, 112px);
+}
+
+.project-page--chipen .project-gallery img {
+  width: min(70vw, 980px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--cocodrilo .project-gallery:not(.project-gallery--opening) {
+  gap: clamp(32px, 6vw, 80px);
+}
+
+.project-page--cocodrilo .project-gallery img {
+  width: min(74vw, 1040px) !important;
+  margin-inline: auto !important;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.project-page--cocodrilo .project-gallery--cocodrilo-illustrations {
+  display: grid;
+  width: min(62vw, 820px);
+  margin-inline: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.project-page--cocodrilo .project-gallery--cocodrilo-illustrations img {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
 .project-page--sol-luna .project-overview {
   min-height: 0;
   padding-bottom: 32px;
@@ -719,6 +756,28 @@ html { scroll-behavior: smooth; }
 
   .project-page--food-jewels .project-gallery--food-jewels img {
     width: min(82vw, 560px) !important;
+  }
+
+  .project-page--chipen .project-gallery img {
+    width: calc(100% - 20px) !important;
+    margin-inline: 10px !important;
+  }
+
+  .project-page--cocodrilo .project-gallery:not(.project-gallery--opening) img {
+    width: calc(100% - 20px) !important;
+    margin-inline: 10px !important;
+  }
+
+  .project-page--cocodrilo .project-gallery--cocodrilo-illustrations {
+    width: 100%;
+    padding-inline: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .project-page--cocodrilo .project-gallery--cocodrilo-illustrations img {
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   .project-page--sol-luna .project-gallery img {
