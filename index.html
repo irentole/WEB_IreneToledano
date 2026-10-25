@@ -57,6 +57,17 @@
 
   <script>
     const projectButtons = [...document.querySelectorAll('.project-menu button')];
+    const viewedProjectStorageKey = 'irene-toledano-viewed-projects';
+    let viewedProjects = new Set();
+    try {
+      const savedProjects = JSON.parse(localStorage.getItem(viewedProjectStorageKey) || '[]');
+      if (Array.isArray(savedProjects)) viewedProjects = new Set(savedProjects);
+    } catch (error) {
+      // The index still works when browser storage is unavailable.
+    }
+    projectButtons.forEach(button => {
+      button.classList.toggle('is-viewed', viewedProjects.has(button.dataset.project));
+    });
     const homeName = document.querySelector('.home-name');
     const previews = [...document.querySelectorAll('.project-preview')];
     const primaryPreview = document.querySelector('.project-preview--top');
@@ -329,7 +340,20 @@
       projectButtons.forEach(button => button.classList.remove('is-gallery-hover'));
     }
 
+    function markProjectAsViewed(href) {
+      const button = projectButtons.find(item => item.dataset.href === href);
+      if (!button) return;
+      viewedProjects.add(button.dataset.project);
+      button.classList.add('is-viewed');
+      try {
+        localStorage.setItem(viewedProjectStorageKey, JSON.stringify([...viewedProjects]));
+      } catch (error) {
+        // Keep the visual state for this visit if storage is unavailable.
+      }
+    }
+
     function openProject(href) {
+      markProjectAsViewed(href);
       window.location.href = href;
     }
 

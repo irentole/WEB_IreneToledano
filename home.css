@@ -296,6 +296,11 @@ html {
   color: #050505;
 }
 
+/* Projects already opened are easy to recognise when returning to the index. */
+.project-menu button.is-viewed {
+  color: #1964d9;
+}
+
 .project-menu button:hover,
 .project-menu button:focus-visible,
 .project-menu button.is-gallery-hover {
