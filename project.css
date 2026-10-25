@@ -121,8 +121,10 @@ html { scroll-behavior: smooth; }
 }
 
 .australian-gallery .australian-poster-mockup img {
-  width: min(58vw, 760px);
+  width: min(50vw, 600px);
+  max-width: 100%;
   height: auto;
+  max-height: calc(100svh - 120px);
   padding: 0;
   object-fit: contain;
   box-shadow:
@@ -134,7 +136,10 @@ html { scroll-behavior: smooth; }
 }
 
 @media (max-width: 760px) {
-  .australian-gallery .australian-poster-mockup img { width: min(72vw, 560px); }
+  .australian-gallery .australian-poster-mockup img {
+    width: min(72vw, 560px);
+    max-height: calc(100svh - 96px);
+  }
 }
 
 .project-main {

@@ -37,14 +37,12 @@
         <li class="project-menu__indent"><button data-project="D PATA NEGRA" data-type="photography" data-href="d-pata-negra.html"><strong>D PATA NEGRA</strong> photography + art</button></li>
         <li class="project-menu__indent"><button data-project="Mundo fluctuante" data-type="concept" data-href="fluctuating.html"><strong>Mundo fluctuante</strong> concept design + graphic design</button></li>
         <li class="project-menu__indent"><button data-project="FOOD JEWELS" data-type="object" data-href="food-jewels.html"><strong>FOOD JEWELS</strong> object design + art direction + photography + graphic design</button></li>
-        <li class="project-menu__indent"><button data-project="Cuando el Sol perdió a la Luna" data-type="art" data-href="cuando-el-sol-perdio-a-la-luna.html"><strong>Cuando el Sol perdió a la Luna</strong> cinematography + set design</button></li>
         <li class="project-menu__indent"><button data-project="McRib" data-type="art" data-href="mcrib.html"><strong>McRib</strong> art</button></li>
         <li class="project-menu__indent"><button data-project="Ortiz" data-type="art" data-href="ortiz.html"><strong>Ortiz</strong> art</button></li>
         <li class="project-menu__indent"><button data-project="BioPark" data-type="storyboard"><strong>BioPark</strong> storyboard</button></li>
         <li><button data-project="girls talk" data-type="painting" data-href="girls-talk.html"><strong>girls talk</strong> painting, acrylic on canvas</button></li>
         <li><button data-project="after party" data-type="painting"><strong>after party</strong> painting, acrylic on canvas</button></li>
         <li><button data-project="Thoughts and Emotions" data-type="painting" data-href="thoughts-and-emotions.html"><strong>Thoughts and Emotions</strong> print, acrylic on cardboard</button></li>
-        <li><button data-project="The fear of dreaming" data-type="painting"><strong>The fear of dreaming</strong> painting, acrylic on canvas</button></li>
       </ul>
     </nav>
 
@@ -70,7 +68,6 @@
       'Basel Aquatics': 'Content/Basel Aquatics/LOGO 1.png',
       'D PATA NEGRA': 'Content/D Pata Negra/POSTER D Pata.png',      'Mundo fluctuante': 'Content/MUNDO FLUCTUANTE/web/POSTER FLUCTUATING.jpg',
       'FOOD JEWELS': 'Content/FOOD JEWELS/web/POSTER.jpg',
-      'Cuando el Sol perdió a la Luna': 'Content/Cuando el Sol perdió a la Luna/WhatsApp Image 2026-07-21 at 14.30.46.jpeg',
       'Ortiz': 'Content/Ortiz/POSTER ORTIZ.jpg',
       'McRib': 'Content/McRib/poster McRib.jpg',
       'girls talk': 'Content/girls talk/POSTER.png',
@@ -86,7 +83,6 @@
       'MHT chairs': '#303537',
       'Mundo fluctuante': '#7958a7',
       'FOOD JEWELS': '#9b7955',
-      'Cuando el Sol perdió a la Luna': '#7b6b61',
       'Ortiz': '#d08a42',
       'McRib': '#d84a28',
       'girls talk': '#e88cae',
@@ -279,6 +275,11 @@
 
       mobileGalleryImages.forEach(image => {
         image.classList.toggle('is-gallery-center', image === centerImage);
+      });
+
+      const centerProject = centerImage?.dataset.project;
+      projectButtons.forEach(button => {
+        button.classList.toggle('is-gallery-hover', button.dataset.project === centerProject);
       });
     }
 
