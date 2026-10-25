@@ -732,6 +732,14 @@ html {
     --interaction-skew: -18deg;
   }
 
+  /* Temporarily prioritise a full-width, scrollable index over the mobile gallery. */
+  .project-preview--top { display: none; }
+
+  .portfolio-composition {
+    width: calc(100vw - (2 * var(--mobile-margin)));
+  }
+
+  .project-menu { width: 100%; }
 
 }
 
