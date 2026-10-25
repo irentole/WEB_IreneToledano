@@ -29,6 +29,6 @@
 
   .project-page--about .about-portrait {
     width: min(28vw, 120px);
-    margin: 10px 10px 48px auto;
+    margin: 10px auto 48px 10px;
   }
 }
