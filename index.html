@@ -43,7 +43,6 @@
         <li class="project-menu__indent"><button data-project="McRib" data-type="art" data-href="mcrib.html"><strong>McRib</strong> art</button></li>
         <li class="project-menu__indent"><button data-project="Ortiz" data-type="art" data-href="ortiz.html"><strong>Ortiz</strong> art</button></li>
         <li><button data-project="girls talk" data-type="painting" data-href="girls-talk.html"><strong>girls talk</strong> painting, acrylic on canvas</button></li>
-        <li><button data-project="after party" data-type="painting"><strong>after party</strong> painting, acrylic on canvas</button></li>
         <li><button data-project="Thoughts and Emotions" data-type="painting" data-href="thoughts-and-emotions.html"><strong>Thoughts and Emotions</strong> print, acrylic on cardboard</button></li>
       </ul>
     </nav>
@@ -66,7 +65,7 @@
     const projectPreviewImages = {
       'SubTexture': 'Content/SubTexture/web/POSTER.jpg',
       '¡Vámonos de compras!': 'Content/vamonos-de-compras/web/POSTER.png',
-      'Artistic Swimming WA': 'Content/Australian Artistic Swimming Championship 2023/POSTER.jpg',
+      'Artistic Swimming WA': 'Content/Australian Artistic Swimming Championship 2023/poster%20nationals.png',
       'WA States': 'Content/previews/1%20poster.jpg',
       'SYNCHRO WA': 'Content/previews/synchro-wa-1.jpg',
       'Logo Artistic Swimming WA': 'Content/Logo Artistic Swimming WA/ASWA logo white.jpg',
@@ -131,12 +130,12 @@
     let pinnedDesktopProject = null;
     let pinnedDesktopOffset = null;
     let previousGalleryTime = null;
+    let isGalleryHovered = false;
     const mobileLayout = window.matchMedia('(max-width: 800px)');
     const mobileCanHover = window.matchMedia('(max-width: 800px) and (hover: hover) and (pointer: fine)');
-    const wideHorizontalGallery = window.matchMedia('(min-width: 1400px)');
 
     function galleryUsesHorizontalTrack() {
-      return !mobileLayout.matches && wideHorizontalGallery.matches;
+      return false;
     }
 
     function galleryLoopLength() {
@@ -201,6 +200,13 @@
 
       desktopGalleryOffset = (desktopGalleryOffset + gestureDelta + loopHeight) % loopHeight;
     }, { passive: false });
+
+    primaryPreview.addEventListener('pointerenter', () => {
+      if (!mobileLayout.matches) isGalleryHovered = true;
+    });
+    primaryPreview.addEventListener('pointerleave', () => {
+      isGalleryHovered = false;
+    });
 
     let previewTouchY = null;
     primaryPreview.addEventListener('touchstart', event => {
@@ -318,10 +324,9 @@
         image.classList.toggle('is-gallery-center', image === centerImage);
       });
 
-      const centerProject = centerImage?.dataset.project;
-      projectButtons.forEach(button => {
-        button.classList.toggle('is-gallery-hover', button.dataset.project === centerProject);
-      });
+      // The moving gallery must not visually select a title. Titles only change
+      // when the visitor actually hovers or focuses them.
+      projectButtons.forEach(button => button.classList.remove('is-gallery-hover'));
     }
 
     function openProject(href) {
@@ -405,7 +410,9 @@
       } else {
         const loopHeight = galleryLoopLength();
         if (loopHeight > 0) {
-          if (pinnedDesktopOffset !== null) {
+          if (isGalleryHovered) {
+            // Keep the current poster still while it is being inspected.
+          } else if (pinnedDesktopOffset !== null) {
             let distance = (pinnedDesktopOffset - desktopGalleryOffset) % loopHeight;
             if (distance > loopHeight / 2) distance -= loopHeight;
             if (distance < -loopHeight / 2) distance += loopHeight;
@@ -549,7 +556,7 @@
       stretch: 1.2,
       width: 1,
       weight: 500,
-      leading: 1.108
+      leading: 1.353
     }));
 
     let previousY = window.scrollY;
@@ -582,7 +589,7 @@
         const targetStretch = 1.2 + upperProgress * (usesPointer ? .16 : .17);
         const targetWidth = 1 - upperProgress * (usesPointer ? .2 : .2);
         const targetWeight = 500 - upperProgress * (usesPointer ? 200 : 170);
-        const targetLeading = 1.108 + upperProgress * (usesPointer ? .075 : .04);
+        const targetLeading = 1.353 + upperProgress * (usesPointer ? .075 : .04);
 
         item.stretch += (targetStretch - item.stretch) * .18;
         item.width += (targetWidth - item.width) * .18;

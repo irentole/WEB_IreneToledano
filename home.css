@@ -85,7 +85,7 @@ html {
   color: #050505;
   background: transparent;
   /* The supplied 12 pt artwork maps to 12 px at its 72 ppi layout scale. */
-  font-size: 14px;
+  font-size: 15.333px;
   font-weight: 500;
   text-transform: none;
   mix-blend-mode: normal;
@@ -100,7 +100,7 @@ html {
 
 .home-header > a {
   color: #050505;
-  font-size: 14px;
+  font-size: 15.333px;
   text-shadow: none;
   transition: font-weight .14s ease;
 }
@@ -115,6 +115,11 @@ html {
   font-weight: 700;
   outline: none;
   text-shadow: none;
+}
+
+.home-header .home-about:hover,
+.home-header .home-about:focus-visible {
+  font-size: calc(1em + 1.333px);
 }
 
 .home-header > a:not(.home-about) {
@@ -138,7 +143,7 @@ html {
 }
 
 .home-header p {
-  font-size: 14px;
+  font-size: 15.333px;
   text-align: left;
 }
 
@@ -152,7 +157,7 @@ html {
   row-gap: 0;
   justify-items: end;
   background: transparent;
-  font-size: 14px;
+  font-size: 15.333px;
   font-weight: 700;
   font-style: italic;
   line-height: var(--contact-line-height, 1.22);
@@ -166,7 +171,7 @@ html {
   color: inherit;
   text-decoration: none;
   text-shadow: none;
-  transition: font-weight .14s ease;
+  transition: font-size .14s ease, font-weight .14s ease;
 }
 
 .home-contact a:hover,
@@ -174,6 +179,11 @@ html {
 .home-contact a:active {
   font-weight: 700;
   text-shadow: none;
+}
+
+.home-contact a:hover,
+.home-contact a:focus-visible {
+  font-size: calc(1em + 1.333px);
 }
 
 .portfolio-composition {
@@ -238,7 +248,7 @@ html {
 
 .project-menu__title {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 15.333px;
   font-weight: 700;
   font-style: italic;
   line-height: 1;
@@ -251,7 +261,7 @@ html {
 .project-menu li {
   margin: 0;
   padding: 0;
-  line-height: var(--item-leading, 1.108);
+  line-height: var(--item-leading, 1.353);
 }
 
 .project-menu li.project-menu__indent { padding-left: 56px; }
@@ -263,7 +273,7 @@ html {
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: 14px;
+  font-size: 15.333px;
   font-weight: var(--item-weight, 500);
   line-height: 1.10;
   letter-spacing: 0;
@@ -277,9 +287,9 @@ html {
 }
 
 .project-menu strong {
-  font-size: 18px;
+  font-size: 19.333px;
   font-weight: var(--item-weight, 500);
-  line-height: 17px;
+  line-height: 18.333px;
 }
 
 .project-menu button[data-type] {
@@ -475,55 +485,6 @@ html {
   }
 }
 
-@media (min-width: 1400px) {
-  .portfolio-composition {
-    display: flex;
-    width: calc((4 * var(--layout-column)) + (3 * var(--home-gutter)));
-    flex-direction: column;
-  }
-
-  .project-menu {
-    order: 1;
-    width: var(--home-column);
-  }
-
-  .project-preview--top {
-    position: relative;
-    z-index: 1;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    order: 2;
-    width: calc(100vw - (2 * var(--home-gutter)));
-    min-height: 160px;
-    height: min(calc(var(--layout-column) + var(--home-gutter)), 30vh);
-    margin-left: calc(var(--home-gutter) - var(--index-axis));
-    margin-top: clamp(10px, 1.5vw, 24px);
-    overflow: hidden;
-  }
-
-  .project-preview__surface {
-    display: flex;
-    width: max-content;
-    height: 100%;
-    min-height: 0;
-    margin: 0;
-    padding-inline: 8vw;
-    gap: clamp(24px, 3vw, 64px);
-    align-items: center;
-  }
-
-  .project-preview--top .mobile-gallery__image {
-    width: auto !important;
-    max-width: 84vw;
-    height: 100%;
-    margin: 0 !important;
-    aspect-ratio: auto;
-    object-fit: contain;
-  }
-}
-
 @media (max-width: 800px) {
   html {
     scroll-snap-type: none;
@@ -559,7 +520,7 @@ html {
     display: block;
     justify-self: center;
     width: auto;
-    font-size: clamp(10px, 2.8vw, 11.5px);
+    font-size: clamp(11.833px, calc(2.8vw + 1.833px), 13.333px);
     text-align: center;
     white-space: nowrap;
     transform: scaleY(1.2);
@@ -567,7 +528,7 @@ html {
   }
 
   .home-header > a {
-    font-size: clamp(10px, 2.8vw, 11.5px);
+    font-size: clamp(11.833px, calc(2.8vw + 1.833px), 13.333px);
   }
 
   .home-contact {
@@ -583,7 +544,7 @@ html {
     padding: 0;
     margin: 0;
     background: transparent;
-    font-size: clamp(10px, 2.8vw, 11.5px);
+    font-size: clamp(11.833px, calc(2.8vw + 1.833px), 13.333px);
     text-align: right;
     transform-origin: bottom right;
   }
@@ -703,20 +664,20 @@ html {
   }
   .project-menu__title {
     margin-bottom: 10px;
-    font-size: clamp(10px, 2.8vw, 11.5px);
+    font-size: clamp(11.833px, calc(2.8vw + 1.833px), 13.333px);
   }
   .project-menu li {
-    line-height: var(--item-leading, 1.108);
+    line-height: var(--item-leading, 1.353);
     padding-bottom: clamp(6px, 1.8vw, 9px);
   }
   .project-menu li.project-menu__indent { padding-left: 34px; }
   .project-menu button {
-    font-size: clamp(10px, 2.8vw, 11.5px);
+    font-size: clamp(11.833px, calc(2.8vw + 1.833px), 13.333px);
     line-height: .92;
   }
   .project-menu strong {
     display: block;
-    font-size: clamp(13px, calc(3.5vw + 1px), 16px);
+    font-size: clamp(14.833px, calc(3.5vw + 2.833px), 17.833px);
     line-height: .9;
   }
 
@@ -751,4 +712,19 @@ html {
 
   .project-menu li { transition: none; }
   .project-menu button { transform: scaleY(1.2); transition: none; }
+}
+
+@media (min-width: 801px) {
+  .portfolio-home .project-preview--top {
+    position: fixed !important;
+    z-index: 4;
+    top: 0;
+    right: var(--home-gutter);
+    bottom: 0;
+    left: var(--gallery-axis);
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+  }
 }
